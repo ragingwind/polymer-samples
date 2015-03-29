@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Polymer Samples - Bare Minimum Custom Element Sugaring">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+  <title>Polymer Samples - Bare Minimum Custom Element Sugaring</title>
+  <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+  <link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<body>
+<my-element></my-element>
+<script>
+    var MyElement = Polymer({
+      is: 'my-element',
+      created: function() {
+        this.innerHTML = 'My element!';
+      }
+    });
+
+    document.createElement('my-element', MyElement);
+    </script>
+</body>
+</html>

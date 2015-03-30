@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Basic lifecycle callbacks</title>
+	<script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<body>
+<my-element></my-element>
+<script>
+  var MyElement = Polymer({
+    is: 'my-element',
+    created: function() {
+      console.log(this.localName + '#' + this.id + ' was created');
+    },
+    attached: function() {
+      console.log(this.localName + '#' + this.id + ' was attached');
+    },
+    detached: function() {
+      console.log(this.localName + '#' + this.id + ' was detached');
+    },
+    attributeChanged: function(name, type) {
+      console.log(this.localName + '#' + this.id + ' attribute ' + name +
+        ' was changed to ' + this.getAttribute(name));
+    }
+  });
+</script>
+</body>
+</html>

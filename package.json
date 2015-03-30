@@ -2,7 +2,8 @@
   "private": true,
   "devDependencies": {
     "ecstatic": "^0.7.0",
-    "gulp": "^3.8.11"
+    "gulp": "^3.8.11",
+    "lodash": "^3.6.0"
   },
   "engines": {
     "node": ">=0.10.0"

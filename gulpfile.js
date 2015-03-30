@@ -10,7 +10,6 @@ var SERVE_PORT = 8080;
 
 gulp.task('serve', function() {
   http.createServer(function(req, res, next) {
-    console.log(req);
     return ecstatic(req, res)
   }).listen(SERVE_PORT);
 

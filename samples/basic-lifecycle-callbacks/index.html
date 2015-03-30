@@ -10,19 +10,24 @@
 <body>
 <my-element></my-element>
 <script>
+  function out(msg) {
+    document.write(msg + '</br>');
+    console.log(msg);
+  }
+
   var MyElement = Polymer({
     is: 'my-element',
     created: function() {
-      console.log(this.localName + '#' + this.id + ' was created');
+      out(this.localName + '#' + this.id + ' was created');
     },
     attached: function() {
-      console.log(this.localName + '#' + this.id + ' was attached');
+      out(this.localName + '#' + this.id + ' was attached');
     },
     detached: function() {
-      console.log(this.localName + '#' + this.id + ' was detached');
+      out(this.localName + '#' + this.id + ' was detached');
     },
     attributeChanged: function(name, type) {
-      console.log(this.localName + '#' + this.id + ' attribute ' + name +
+      out(this.localName + '#' + this.id + ' attribute ' + name +
         ' was changed to ' + this.getAttribute(name));
     }
   });

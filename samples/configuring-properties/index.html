@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Configuring properties</title>
+	<script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<body>
+<x-custom></x-custom>
+<script>
+  Polymer({
+    is: 'x-custom',
+
+    properties: {
+      user: String,
+      isHappy: Boolean,
+      count: {
+        type: Number,
+        readOnly: true,
+        notify: true
+      }
+    },
+
+    ready: function() {
+      this.innerHTML = 'Hello World, I am a <b>Custom Element!</b>';
+    }
+  });
+</script>
+</body>
+</html>

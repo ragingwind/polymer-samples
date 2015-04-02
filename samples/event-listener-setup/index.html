@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Event listener setup</title>
+	<script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<body>
+<x-custom></x-custom>
+
+<dom-module id="x-custom">
+  <template>
+    <div>I will respond</div>
+    <div>to a click on</div>
+    <div>any of my children!</div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'x-custom',
+
+    listeners: {
+      'click': 'handleClick'
+    },
+
+    handleClick: function(e) {
+      alert("Thank you for clicking");
+    }
+  });
+</script>
+</body>
+</html>

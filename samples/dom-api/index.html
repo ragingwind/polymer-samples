@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - DOM API</title>
+	<script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="/bower_components/chai/chai.js"></script>
+	<link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-apis-anynode></dom-apis-anynode>
+<dom-apis-local-dom></dom-apis-local-dom>
+<x-foo><div></div></x-foo>
+
+<dom-module id="dom-apis-anynode">
+  <span id="span1"></span>
+  <span id="span2"></span>
+</dom-module>
+
+<dom-module id="dom-apis-local-dom">
+  <template>
+    <div id="container">
+       <div id="first"></div>
+       <content></content>
+    </div>
+  </template>
+</dom-module>
+
+<dom-module id="x-foo">
+  <template>
+    <content></content>
+  </template>
+</dom-module>
+
+<script>
+  var assert = chai.assert;
+
+  // access any-dom
+  Polymer({
+    is: 'dom-apis-anynode',
+
+    ready: function() {
+      var toLight = document.createElement('div');
+      Polymer.dom(this).appendChild(toLight);
+
+      var toLocal = document.createElement('div');
+      var beforeNode = Polymer.dom(this.root).childNodes[0];
+      Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
+
+      var allDivs = Polymer.dom(this).querySelectorAll('div');
+      console.log('allDivs', allDivs);
+      var allSpans = Polymer.dom().querySelectorAll('span');
+      console.log('allSpans', allSpans);
+    }
+  });
+
+  // access local-dom
+  Polymer({
+    is: 'dom-apis-local-dom',
+
+    ready: function() {
+      var insert = document.createElement('div');
+      insert.innerHTML = 'insert';
+      Polymer.dom(this.$.container).insertBefore(insert, this.$.first);
+    }
+  });
+
+  Polymer({
+    is: 'x-foo',
+  });
+
+  var xFoo = document.querySelector('x-foo');
+  var div = Polymer.dom(xFoo).querySelector('div');
+  var content = Polymer.dom(xFoo.root).querySelector('content');
+  var distributed = Polymer.dom(content).getDistributedNodes()[0];
+  var insertedTo = Polymer.dom(div).getDestinationInsertionPoints()[0];
+
+  assert.equal(distributed, div);
+  assert.equal(insertedTo, content);
+</script>
+
+</body>
+</html>

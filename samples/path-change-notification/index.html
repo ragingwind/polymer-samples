@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Path change notification</title>
+	<script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="custom-element">
+  <template>
+    <div>{{user.manager.name}}</div>
+  </template>
+</dom-module>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'custom-element',
+
+      properties: {
+        user: {
+          type: Object,
+          value: {
+            manager: {
+              name: 'No Name'
+            }
+          }
+        }
+      },
+
+      reassignManager: function(newManager) {
+        this.user.manager = newManager;
+        this.notifyPath('user.manager', this.user.manager);
+      },
+
+      reassignManagerWithSetPathValye: function(newManager) {
+        this.setPathValue('user.manager', newManager);
+      },
+
+      ready: function() {
+        this.reassignManager({name: 'John Doe'});
+
+        setTimeout(function() {
+          this.reassignManagerWithSetPathValye({name: 'Jane Doe'})
+        }.bind(this), 1000);
+      }
+    });
+  });
+</script>
+
+<custom-element></custom-element>
+</body>
+</html>

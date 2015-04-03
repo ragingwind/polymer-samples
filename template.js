@@ -16,8 +16,14 @@ var template = _.template(['<!doctype html>',
 '\t<link rel="import" href="/bower_components/polymer/polymer.html">',
 '</head>',
 '<body>',
+'<dom-module>',
+'\t<template>',
+'\t</template>',
+'</dom-module>',
+'',
 '<script>',
 '</script>',
+'',
 '</body>',
 '</html>'].join('\n'));
 
@@ -27,7 +33,5 @@ if (!title) {
   process.exit(-1);
 }
 
-var target = path.join(__dirname, 'samples', title.toLowerCase().replace(/ /gi, '-'));
-
-mkdir(target)
-write(path.join(target, 'index.html'), template({title: title}));
+var target = path.join(__dirname, 'samples', title.toLowerCase().replace(/ /gi, '-') + '.html');
+write(target, template({title: title}));

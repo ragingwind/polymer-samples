@@ -7,20 +7,19 @@
 	<script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
 	<link rel="import" href="/bower_components/polymer/polymer.html">
 </head>
+<style>
+  .disabled {
+    color:grey;
+    font-style: italic;
+  }
+
+  .highlight {
+    background-color: yellow;
+  }
+</style>
 <body>
-<x-custom>X-Custom</x-custom>
-
-<dom-module is="x-custom">
-  <style>
-    .disabled {
-      color:grey;
-      font-style: italic;
-    }
-
-    .highlight {
-      background-color: yellow;
-    }
-  </style>
+<dom-module id="x-custom">
+  <template>X-Custom</template>
 </dom-module>
 
 <script>
@@ -55,5 +54,7 @@
     }, 500);
   });
 </script>
+
+<x-custom></x-custom>
 </body>
 </html>

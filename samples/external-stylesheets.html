@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - External stylesheets</title>
+	<script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="my-awesome-button">
+  <!-- special import with type=css used to load remote CSS -->
+  <link rel="import" type="css" href="my-awesome-button.css">
+
+  <template>
+    <button>My awesome button</button>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-awesome-button',
+    });
+  </script>
+</dom-module>
+
+<my-awesome-button></my-awesome-button>
+</body>
+</html>

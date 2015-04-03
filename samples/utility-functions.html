@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Utility Functions</title>
+	<script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<style>
+  .toggle {
+    color:grey;
+    font-style: italic;
+    background-color: yellow;
+  }
+
+  [enable] {
+    color:red;
+    font-weight: 800;
+  }
+
+  [disable] {
+    color:green;
+    font-weight: 800;
+  }
+
+  custom-element {
+    position:absolute;
+    top:100px;
+  }
+</style>
+<body>
+
+<dom-module id="my-element">
+  <template>Polymer Utility APIs</template>
+</dom-module>
+
+<dom-module id="custom-element">
+  <template>
+    <span>Custom Element</span>
+    <my-element style$="{{position}}" id="my"></my-element>
+  </template>
+</dom-module>
+
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'my-element',
+
+      created: function() {
+        this.addEventListener('said-hello', function(e) {
+          this.innerHTML = 'Say hi, from ' + e.detail.name +  ' to ' + e.target.localName;
+        });
+      }
+    });
+
+    Polymer({
+      is: 'custom-element',
+
+      properties: {
+        position: {
+          type: String,
+          value: 'position:absolute'
+        }
+      },
+
+      created: function() {
+        this.importHref('./fun-mixin.html', function() {
+          FunMixin.makeElementFun.call(this);
+        });
+      },
+
+      ready: function() {
+        this.$.my.toggleClass('toggle');
+        this.toggleAttribute('enable', true);
+        this.attributeFollows('enable', this.$.my);
+
+        this.async(function() {
+          this.$.my.fire('said-hello', {name: this.localName});
+          this.transform(this, 'translate(100px) rotate(20deg)');
+          this.translate3d(this.$.my, '50px', '50px', '0')
+        }.bind(this), 700);
+      }
+    });
+  });
+</script>
+
+<custom-element></custom-element>
+</body>
+</html>

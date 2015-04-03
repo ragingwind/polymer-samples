@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Binding to native element attributes</title>
+	<script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="custom-element">
+  <style>
+    div {
+      height: 100px;
+    }
+
+    .enable {
+      background-color: orange
+    }
+
+    .disable {
+      background-color: grey
+    }
+  </style>
+	<template>
+    <!-- class -->
+    <div class$="{{foo}}"></div>
+
+    <!-- style -->
+    <div style$="{{background}}"></div>
+
+    <!-- href -->
+    <a href$="{{url}}">Google</a>
+
+    <!-- label for -->
+    <label id="bar" for$="{{bar}}">Bar</label>
+
+    <!-- dataset -->
+    <div id="baz" data-bar$="{{baz}}"></div>
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'custom-element',
+
+    properties: {
+      foo: {
+        type: String,
+        value: 'enable'
+      },
+      background: {
+        type: String,
+        value: 'background-color:green'
+      },
+      url: {
+        type: String,
+        value: 'https://google.com'
+      },
+      bar: {
+        type: String,
+        value: 'Bar'
+      },
+      baz: {
+        type: String,
+        value: 'baz'
+      }
+    },
+
+    ready: function() {
+      console.log(this.$.bar.getAttribute('for'));
+      console.log(this.$.baz.getAttribute('data-bar'));
+    }
+  })
+</script>
+
+<custom-element></custom-element>
+</body>
+</html>

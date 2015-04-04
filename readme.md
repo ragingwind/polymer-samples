@@ -2,9 +2,21 @@
 
 > Polymer samples for current master version of [Polymer](https://github.com/polymer/polymer)
 
-# How to use
+## Run server
 
-# Add sample page
+Please make sure that NPM has been installed before run gulp
+
+```
+gulp serve
+```
+
+## Deploy
+
+```
+gulp ghpage
+```
+
+## Add sample page
 
 ```
 node ./template.js 'Page title'

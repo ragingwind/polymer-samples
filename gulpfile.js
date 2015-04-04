@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var ghpage = require('gulp-gh-page');
+var ghpage = require('gulp-gh-pages');
 var http = require('http');
 var ecstatic = require('ecstatic')({
   root:  __dirname + '/samples',

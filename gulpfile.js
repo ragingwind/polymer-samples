@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var ghpage = require('gulp-gh-page');
 var http = require('http');
 var ecstatic = require('ecstatic')({
   root:  __dirname + '/samples',
@@ -7,6 +8,13 @@ var ecstatic = require('ecstatic')({
 });
 
 var SERVE_PORT = 8080;
+
+gulp.task('ghpage', function () {
+  return gulp.src("./samples/**/*")
+      .pipe(ghpage({
+        remoteUrl:'https://github.com/ragingwind/polymer-samples.git'
+      }));
+});
 
 gulp.task('serve', function() {
   http.createServer(function(req, res, next) {

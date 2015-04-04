@@ -1,7 +1,0 @@
-{
-  "name": "ragingwind",
-  "dependencies": {
-    "polymer": "0.8.0",
-    "chai": "~2.2.0"
-  }
-}

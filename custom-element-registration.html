@@ -5,18 +5,20 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
   <title>Polymer Samples - Custom element registration</title>
   <script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
   <link rel="import" href="./bower_components/polymer/polymer.html">
 </head>
 <body>
-<my-element></my-element>
 <script>
-    var MyElement = Polymer({
-      is: 'my-element',
+  var MyElement = Polymer({
+    is: 'my-element',
 
-      created: function() {
-        this.innerHTML = 'My element!';
-      }
-    });
-    </script>
+    created: function() {
+      this.innerHTML = 'My element!';
+    }
+  });
+</script>
+
+<my-element></my-element>
 </body>
 </html>

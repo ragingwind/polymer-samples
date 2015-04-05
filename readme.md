@@ -1,10 +1,10 @@
 # Polymer Samples
 
-> Polymer samples for current master version of [Polymer](https://github.com/polymer/polymer)
+> Polymer runnable samples for current version(0.8) of [Polymer](https://github.com/polymer/polymer)
 
 ## Run server
 
-Please make sure that NPM has been installed before run gulp
+Please make sure that NPM has been installed before you run gulp
 
 ```
 gulp serve

@@ -9,11 +9,12 @@ var ecstatic = require('ecstatic')({
 
 var SERVE_PORT = 8080;
 
-gulp.task('ghpage', function () {
+gulp.task('deploy', function () {
   return gulp.src("./samples/**/*")
-      .pipe(ghpage({
-        remoteUrl:'https://github.com/ragingwind/polymer-samples.git'
-      }));
+    .pipe(ghpage({
+      cacheDir: '.tmp',
+      remoteUrl: 'https://github.com/ragingwind/polymer-samples.git'
+    }));
 });
 
 gulp.task('serve', function() {

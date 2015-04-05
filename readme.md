@@ -13,7 +13,7 @@ gulp serve
 ## Deploy
 
 ```
-gulp ghpage
+gulp deploy
 ```
 
 ## Add sample page

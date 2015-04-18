@@ -27,31 +27,33 @@
 </dom-module>
 
 <script>
-  Polymer({
-    is: 'my-element',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'my-element',
 
-    properties: {
-      selected: {
-        type: String,
-        observer: 'selectedChanged'
+      properties: {
+        selected: {
+          type: String,
+          observer: 'selectedChanged'
+        }
+      },
+
+      attributeChanged: function() {
+        console.log(this.id, 'Attribute has changed');
+      },
+
+      selectedChanged: function() {
+        console.log(this.id, 'Selected has changed');
       }
-    },
+    });
 
-    attributeChanged: function() {
-      console.log(this.id, 'Attribute has changed');
-    },
+    Polymer({
+      is: 'custom-element',
 
-    selectedChanged: function() {
-      console.log(this.id, 'Selected has changed');
-    }
-  });
-
-  Polymer({
-    is: 'custom-element',
-
-    properties: {
-      value: String
-    }
+      properties: {
+        value: String
+      }
+    });
   });
 </script>
 

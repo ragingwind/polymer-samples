@@ -17,12 +17,14 @@
     </template>
   </template>
 <script>
-  var mt = document.querySelector('#main-template');
-  mt.data = [
-    {first: 'Bob', last: 'Smith', type: 'manager'},
-    {first: 'Sally', last: 'Johnson', type: 'manager'},
-    {first: 'John', last: 'Doe', type: 'engineer'}
-  ];
+  document.addEventListener('WebComponentsReady', function() {
+    var mt = document.querySelector('#main-template');
+    mt.data = [
+      {first: 'Bob', last: 'Smith', type: 'manager'},
+      {first: 'Sally', last: 'Johnson', type: 'manager'},
+      {first: 'John', last: 'Doe', type: 'engineer'}
+    ];
+  });
 </script>
 </body>
 </html>

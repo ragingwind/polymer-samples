@@ -20,16 +20,18 @@
 </dom-module>
 
 <script>
-  Polymer({
-    is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-    listeners: {
-      'click': 'handleClick'
-    },
+      listeners: {
+        'click': 'handleClick'
+      },
 
-    handleClick: function(e) {
-      alert("Thank you for clicking");
-    }
+      handleClick: function(e) {
+        alert("Thank you for clicking");
+      }
+    });
   });
 </script>
 </body>

@@ -22,8 +22,6 @@
     <div>Not currently supported</div>
     <div>First: {{first}}</div>
     <div>Last: {{last}}</div>
-
-
     </p>
   </template>
 </dom-module>
@@ -35,28 +33,30 @@
 </dom-module>
 
 <script>
-  Polymer({
-    is: 'user-view',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'user-view',
 
-    properties: {
-      first: String,
-      last: String,
-      firstName: String
-    }
-  });
+      properties: {
+        first: String,
+        last: String,
+        firstName: String
+      }
+    });
 
-  Polymer({
-    is: 'main-view',
+    Polymer({
+      is: 'main-view',
 
-    properties: {
-      user: {
-        type: Object,
-        value: {
-          first: 'Samuel',
-          last: 'Adams'
+      properties: {
+        user: {
+          type: Object,
+          value: {
+            first: 'Samuel',
+            last: 'Adams'
+          }
         }
       }
-    }
+    });
   });
 </script>
 

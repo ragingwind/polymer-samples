@@ -11,22 +11,24 @@
 <body>
 <x-custom></x-custom>
 <script>
-  Polymer({
-    is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-    properties: {
-      user: String,
-      isHappy: Boolean,
-      count: {
-        type: Number,
-        readOnly: true,
-        notify: true
+      properties: {
+        user: String,
+        isHappy: Boolean,
+        count: {
+          type: Number,
+          readOnly: true,
+          notify: true
+        }
+      },
+
+      ready: function() {
+        this.innerHTML = 'Hello World, I am a <b>Custom Element!</b>';
       }
-    },
-
-    ready: function() {
-      this.innerHTML = 'Hello World, I am a <b>Custom Element!</b>';
-    }
+    });
   });
 </script>
 </body>

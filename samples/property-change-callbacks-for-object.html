@@ -12,31 +12,33 @@
 <x-custom></x-custom>
 
 <script>
-  Polymer({
-    is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-    properties: {
-      user: Object
-    },
+      properties: {
+        user: Object
+      },
 
-    observers: {
-      'user.manager.*': 'userManagerChanged'
-    },
+      observers: {
+        'user.manager.*': 'userManagerChanged'
+      },
 
-    log: function(msg) {
-      this.innerHTML += msg + '</br>'
-      console.log(msg);
-    },
+      log: function(msg) {
+        this.innerHTML += msg + '</br>'
+        console.log(msg);
+      },
 
-    userManagerChanged: function(newValue, oldValue, path) {
-      if (path) {
-        // sub-property of user.manager changed
-        this.log('manager ' + path.split('.').pop() + ' changed to ' + newValue);
-      } else {
-        // user object itself changed
-        this.log('new object is ' + newValue);
-      }
-    },
+      userManagerChanged: function(newValue, oldValue, path) {
+        if (path) {
+          // sub-property of user.manager changed
+          this.log('manager ' + path.split('.').pop() + ' changed to ' + newValue);
+        } else {
+          // user object itself changed
+          this.log('new object is ' + newValue);
+        }
+      },
+    });
   });
 
   document.addEventListener('DOMContentLoaded', function() {

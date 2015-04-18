@@ -23,30 +23,32 @@
   </template>
 
   <script>
-    Polymer({
-      is: 'employee-list',
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'employee-list',
 
-      isEngineer: function(item) {
-        return item.type === 'engineer';
-      },
+        isEngineer: function(item) {
+          return item.type === 'engineer';
+        },
 
-      ready: function() {
-        this.employees = [
-          {first: 'Bob', last: 'Smith', type: 'manager'},
-          {first: 'Sally', last: 'Johnson', type: 'manager'},
-          {first: 'John', last: 'Doe', type: 'engineer'}
-        ];
+        ready: function() {
+          this.employees = [
+            {first: 'Bob', last: 'Smith', type: 'manager'},
+            {first: 'Sally', last: 'Johnson', type: 'manager'},
+            {first: 'John', last: 'Doe', type: 'engineer'}
+          ];
 
-        this.async(function() {
-          this.employees.push({
-            first: 'Rod',
-            last: 'Dodson',
-            type: 'engineer'
-          })
+          this.async(function() {
+            this.employees.push({
+              first: 'Rod',
+              last: 'Dodson',
+              type: 'engineer'
+            })
 
-          this.setPathValue('employees.1.type', 'engineer');
-        }.bind(this));
-      }
+            this.setPathValue('employees.1.type', 'engineer');
+          }.bind(this));
+        }
+      });
     });
   </script>
 </dom-module>

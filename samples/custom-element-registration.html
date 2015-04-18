@@ -10,12 +10,14 @@
 </head>
 <body>
 <script>
-  var MyElement = Polymer({
-    is: 'my-element',
+  document.addEventListener('WebComponentsReady', function() {
+    var MyElement = Polymer({
+      is: 'my-element',
 
-    created: function() {
-      this.innerHTML = 'My element!';
-    }
+      created: function() {
+        this.innerHTML = 'My element!';
+      }
+    });
   });
 </script>
 

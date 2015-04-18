@@ -12,27 +12,29 @@
 <x-custom></x-custom>
 
 <script>
-  Polymer({
-    is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-    properties: {
-      preload: Boolean,
-      src: String,
-      size: String
-    },
+      properties: {
+        preload: Boolean,
+        src: String,
+        size: String
+      },
 
-    observers: {
-      'preload src size': 'updateImage'
-    },
+      observers: {
+        'preload src size': 'updateImage'
+      },
 
-    updateImage: function(preload, src, size) {
-      this.innerHTML = [
-        'Uploading image by',
-        ' preload:', preload || false,
-        ', src:', src || 'none',
-        ', size:', size || 0
-      ].join('');
-    }
+      updateImage: function(preload, src, size) {
+        this.innerHTML = [
+          'Uploading image by',
+          ' preload:', preload || false,
+          ', src:', src || 'none',
+          ', size:', size || 0
+        ].join('');
+      }
+    });
   });
 
   document.addEventListener('DOMContentLoaded', function() {

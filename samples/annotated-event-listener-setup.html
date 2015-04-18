@@ -18,12 +18,14 @@
 </dom-module>
 
 <script>
-  Polymer({
-    is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-    handleClick: function() {
-      alert('Ow!');
-    }
+      handleClick: function() {
+        alert('Ow!');
+      }
+    });
   });
 </script>
 </body>

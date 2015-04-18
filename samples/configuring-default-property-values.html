@@ -13,32 +13,34 @@
 <x-custom></x-custom>
 
 <script>
-  var assert = chai.assert;
+  document.addEventListener('WebComponentsReady', function() {
+    var assert = chai.assert;
 
-  Polymer({
-    is: 'x-custom',
+    Polymer({
+      is: 'x-custom',
 
-    properties: {
-      mode: {
-        type: String,
-        value: 'auto'
-      },
-      data: {
-        type: Object,
-        notify: true,
-        value: function() {
-          return {
-            value: 10
-          };
+      properties: {
+        mode: {
+          type: String,
+          value: 'auto'
+        },
+        data: {
+          type: Object,
+          notify: true,
+          value: function() {
+            return {
+              value: 10
+            };
+          }
         }
-      }
-    },
+      },
 
-    ready: function() {
-      assert(this.data.value);
-      assert.equal(this.data.value, 10);
-      this.innerHTML = 'All is well';
-    }
+      ready: function() {
+        assert(this.data.value);
+        assert.equal(this.data.value, 10);
+        this.innerHTML = 'All is well';
+      }
+    });
   });
 </script>
 </body>

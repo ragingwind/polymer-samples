@@ -18,9 +18,11 @@
 </dom-module>
 
 <script>
-  Polymer({
-    // assign 'x-foo' id to Polymer
-    is: 'x-foo'
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      // assign 'x-foo' id to Polymer
+      is: 'x-foo'
+    });
   });
 </script>
 </body>

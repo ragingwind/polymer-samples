@@ -70,8 +70,10 @@
   </template>
 
   <script>
-    Polymer({
-      is: 'my-element'
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-element'
+      });
     });
   </script>
 </dom-module>

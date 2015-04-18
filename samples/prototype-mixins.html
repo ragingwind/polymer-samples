@@ -13,14 +13,16 @@
 <body>
 <my-element></my-element>
 <script>
-  Polymer({
-    is: 'my-element',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'my-element',
 
-    mixins: [FunMixin],
+      mixins: [FunMixin],
 
-    created: function() {
-      this.funCreatedCallback();
-    }
+      created: function() {
+        this.funCreatedCallback();
+      }
+    });
   });
 </script>
 </body>

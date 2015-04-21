@@ -19,7 +19,7 @@ gulp deploy
 ## Add sample page
 
 ```
-node ./toos/template.js 'Page title'
+node ./tools/template.js 'Page title'
 ```
 
 # License

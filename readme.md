@@ -1,6 +1,6 @@
 # Polymer Samples
 
-> Polymer runnable samples for current version(0.8) of [Polymer](https://github.com/polymer/polymer)
+> Polymer runnable samples for latest version of [Polymer](https://github.com/polymer/polymer)
 
 ## Run server
 

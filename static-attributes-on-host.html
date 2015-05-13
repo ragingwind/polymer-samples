@@ -15,28 +15,30 @@
 <!-- attribute value will be changed in creation time></x-custom> -->
 <x-custom role="tab" tabindex="1"></x-custom>
 <script>
-Polymer({
-  is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-  hostAttributes: {
-    role: 'button',
-    'aria-disabled': true,
-    tabindex: 0
-  },
+      hostAttributes: {
+        role: 'button',
+        'aria-disabled': true,
+        tabindex: 0
+      },
 
-  attributeChanged: function(attrName, oldVal, newVal) {
-    console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
-  },
+      attributeChanged: function(attrName, oldVal, newVal) {
+        console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
+      },
 
-  ready: function() {
-    console.log(this.role);
-    this.innerHTML = [
-      'role', this.getAttribute('role'),
-      'aria-disabled', this.getAttribute('aria-disabled'),
-      'tabindex', this.getAttribute('tabindex')
-    ].join(' ');
-  }
-});
+      ready: function() {
+        console.log(this.role);
+        this.innerHTML = [
+          'role', this.getAttribute('role'),
+          'aria-disabled', this.getAttribute('aria-disabled'),
+          'tabindex', this.getAttribute('tabindex')
+        ].join(' ');
+      }
+    });
+  });
 </script>
 </body>
 </html>

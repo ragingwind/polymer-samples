@@ -26,9 +26,10 @@
     ready: function() {
       setInterval(function() {
         this.enabled = !this.enabled;
+        this.innerHTML = 'Custom Element ' + this.enabled;
       }.bind(this), 500);
     }
-  })
+  });
 </script>
 
 <custom-element></custom-element>

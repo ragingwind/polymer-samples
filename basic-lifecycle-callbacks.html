@@ -11,30 +11,32 @@
 <body>
 <my-element id="my-id"></my-element>
 <script>
-  function out(msg) {
+  function log(msg) {
     document.write(msg + '</br>');
     console.log(msg);
   }
 
-  var MyElement = Polymer({
-    is: 'my-element',
+  document.addEventListener('WebComponentsReady', function() {
+    var MyElement = Polymer({
+      is: 'my-element',
 
-    created: function() {
-      out(this.localName + '#' + this.id + ' was created');
-    },
+      created: function() {
+        log(this.localName + '#' + this.id + ' was created');
+      },
 
-    attached: function() {
-      out(this.localName + '#' + this.id + ' was attached');
-    },
+      attached: function() {
+        log(this.localName + '#' + this.id + ' was attached');
+      },
 
-    detached: function() {
-      out(this.localName + '#' + this.id + ' was detached');
-    },
+      detached: function() {
+        log(this.localName + '#' + this.id + ' was detached');
+      },
 
-    attributeChanged: function(name, type) {
-      out(this.localName + '#' + this.id + ' attribute ' + name +
-        ' was changed to ' + this.getAttribute(name));
-    }
+      attributeChanged: function(name, type) {
+        log(this.localName + '#' + this.id + ' attribute ' + name +
+          ' was changed to ' + this.getAttribute(name));
+      }
+    });
   });
 </script>
 </body>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Property change callbacks for object</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<x-custom></x-custom>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
+
+      properties: {
+        user: Object
+      },
+
+      observers: [
+        'userManagerChanged(user.manager.*)'
+      ],
+
+      log: function(msg) {
+        this.innerHTML += msg + '</br>'
+        console.log(msg);
+      },
+
+      userManagerChanged: function(changeRecord) {
+        if (changeRecord.base && changeRecord.path == 'user.manager') {
+          // user.manager object itself changed
+          this.log('new manager name is ' + changeRecord.base.name ? changeRecord.base.name : 'Unknown');
+        } else {
+          // sub-property of user.manager changed
+          this.log(changeRecord.path + ' changed to ' + changeRecord.value);
+        }
+      },
+    });
+
+    var xs = document.querySelector('x-custom');
+
+    // 1. event with no path
+    xs.set('user', {manager: {name: 'John Doe'}});
+
+    // 3. event with `user.manager` path
+    xs.set('user.manager', new Object);
+
+    // 2. event with `user.manager.name`
+    xs.set('user.manager.name', 'Jane Doe');
+
+    // missed fire events
+    xs.user.manager.name = 'Hong Gil';
+
+    // 4. event with no path
+    xs.set('user', undefined);
+  });
+</script>
+</body>
+</html>

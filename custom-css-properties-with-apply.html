@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+  <title>Polymer Samples - Custom CSS properties with mixin</title>
+  <script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+  <link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="my-toolbar">
+  <style>
+    :host {
+      padding: 4px;
+      background-color: gray;
+      @apply(--my-toolbar-theme);
+    }
+    .title {
+      @apply(--my-toolbar-title-theme);
+    }
+  </style>
+
+  <template>
+    <span class="title">{{label}}</span>
+  </template>
+
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-toolbar',
+
+        properties: {
+          label: String
+        }
+      });
+    });
+  </script>
+</dom-module>
+
+<dom-module id="my-element">
+  <style>
+    /* Apply custom theme to toolbars */
+    :host {
+      --my-toolbar-theme: {
+        background-color: green;
+        border-radius: 4px;
+        border: 1px solid gray;
+      }
+      --my-toolbar-title-theme: {
+        color: green;
+      }
+    }
+
+    /* Make only toolbars with the .warning class red and bold */
+    .warning {
+      --my-toolbar-title-theme: {
+        color: red;
+        font-weight: bold;
+      }
+    }
+  </style>
+
+  <template>
+    <my-toolbar label="It doesn't work well now"></my-toolbar>
+    <my-toolbar label="This one is green too."></my-toolbar>
+    <my-toolbar class="warning" label="This one is red."></my-toolbar>
+  </template>
+
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-element'
+      });
+    });
+  </script>
+</dom-module>
+
+<my-element></my-element>
+</body>
+</html>

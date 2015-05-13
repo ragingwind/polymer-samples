@@ -17,35 +17,36 @@
 <br/>
 <x-custom-camel-case-property user-name="Scott"></x-custom-camel-case-property>
 <script>
-  Polymer({
-    is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-    properties: {
-      user: String,
-      manager: {
-        type: Boolean,
-        notify: true
+      properties: {
+        user: String,
+        manager: {
+          type: Boolean,
+          notify: true
+        }
+      },
+
+      attached: function() {
+        // render
+        this.innerHTML = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
+          'This user is ' + (this.manager ? '' : 'not') + ' a manager.';
       }
-    },
+    });
 
-    attached: function() {
-      // render
-      this.innerHTML = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
-        'This user is ' + (this.manager ? '' : 'not') + ' a manager.';
-    }
-  });
+    Polymer({
+      is: 'x-custom-camel-case-property',
 
-  Polymer({
+      properties: {
+        userName: String,
+      },
 
-    is: 'x-custom-camel-case-property',
-
-    properties: {
-      userName: String,
-    },
-
-    attached: function() {
-      this.innerHTML = 'userName property of using dash-case attribute' + this.userName
-    }
+      attached: function() {
+        this.innerHTML = 'userName property of using dash-case attribute' + this.userName
+      }
+    });
   });
 </script>
 </body>

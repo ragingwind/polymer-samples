@@ -13,40 +13,44 @@
 <dom-module id="employee-list">
   <template>
     <div> Employee list: </div>
-    <template is="x-repeat" items="{{employees}}">
+    <template is="dom-repeat" items="{{employees}}">
       <div>First name: <span>{{item.first}}</span> Last name: <span>{{item.last}}</span> Type: <span>{{item.type}}</span></div>
     </template>
     <div> Filtered Employee list: </div>
-    <template is="x-repeat" items="{{employees}}" filter="isEngineer" observe="type">
+    <template is="dom-repeat" items="{{employees}}" filter="isEngineer" observe="type">
       <div>First name: <span>{{item.first}}</span> Last name: <span>{{item.last}}</span> type: <span>{{item.type}}</span></div>
     </template>
   </template>
 
   <script>
-    Polymer({
-      is: 'employee-list',
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'employee-list',
 
-      isEngineer: function(item) {
-        return item.type === 'engineer';
-      },
+        isEngineer: function(item) {
+          return item && item.type === 'engineer';
+        },
 
-      ready: function() {
-        this.employees = [
-          {first: 'Bob', last: 'Smith', type: 'manager'},
-          {first: 'Sally', last: 'Johnson', type: 'manager'},
-          {first: 'John', last: 'Doe', type: 'engineer'}
-        ];
+        ready: function() {
+          this.employees = [
+            {first: 'Bob', last: 'Smith', type: 'manager'},
+            {first: 'Sally', last: 'Johnson', type: 'manager'},
+            {first: 'John', last: 'Doe', type: 'engineer'}
+          ];
 
-        this.async(function() {
-          this.employees.push({
-            first: 'Rod',
-            last: 'Dodson',
-            type: 'engineer'
-          })
+          this.async(function() {
+            console.log('push');
+            this.employees.push({
+              first: 'Rod',
+              last: 'Dodson',
+              type: 'engineer'
+            });
 
-          this.setPathValue('employees.1.type', 'engineer');
-        }.bind(this));
-      }
+            this.set('employees.1.type', 'engineer');
+            console.log('current', this.employees);
+          }.bind(this));
+        }
+      });
     });
   </script>
 </dom-module>

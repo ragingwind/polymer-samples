@@ -21,19 +21,18 @@
   </style>
 
   <template>
-    <span class="title">{{title}}</span>
+    <span class="title">{{label}}</span>
   </template>
 
   <script>
-    Polymer({
-      is: 'my-toolbar',
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-toolbar',
 
-      properties: {
-        title: String
-      },
-
-      // The custom properties shim is currently an opt-in feature
-      enableCustomStyleProperties: true
+        properties: {
+          label: String
+        }
+      });
     });
   </script>
 </dom-module>
@@ -52,14 +51,16 @@
   </style>
 
   <template>
-    <my-toolbar title="This one is green."></my-toolbar>
-    <my-toolbar title="This one is green too."></my-toolbar>
-    <my-toolbar class="warning" title="This one is red."></my-toolbar>
+    <my-toolbar label="This one is green."></my-toolbar>
+    <my-toolbar label="This one is green too."></my-toolbar>
+    <my-toolbar class="warning" label="This one is red."></my-toolbar>
   </template>
 
   <script>
-    Polymer({
-      is: 'my-element'
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-element'
+      });
     });
   </script>
 </dom-module>

@@ -18,12 +18,14 @@
 </dom-module>
 
 <script>
-  Polymer({
-    is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-    attached: function() {
-      this.$.name.textContent = this.localName;
-    }
+      attached: function() {
+        this.$.name.textContent = this.localName;
+      }
+    });
   });
 </script>
 </body>

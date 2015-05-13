@@ -17,29 +17,27 @@
 </dom-module>
 
 <script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'host-element',
+  Polymer({
+    is: 'host-element',
 
-      properties: {
-        hostValue: {
-          type: String,
-          observer: 'hostValueChanged'
-        },
-        hostChecked: {
-          type: Boolean,
-          observer: 'hostCheckedChanged'
-        },
+    properties: {
+      hostValue: {
+        type: String,
+        observer: 'hostValueChanged'
       },
-
-      hostValueChanged: function(newVal) {
-        console.log('Input value has been changed', newVal);
+      hostChecked: {
+        type: Boolean,
+        observer: 'hostCheckedChanged'
       },
+    },
 
-      hostCheckedChanged: function(newVal) {
-        console.log('Checkbox value has been changed', newVal);
-      }
-    });
+    hostValueChanged: function(newVal) {
+      console.log('Input value has been changed', newVal);
+    },
+
+    hostCheckedChanged: function(newVal) {
+      console.log('Checkbox value has been changed', newVal);
+    }
   });
 </script>
 

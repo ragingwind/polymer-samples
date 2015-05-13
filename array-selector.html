@@ -12,16 +12,16 @@
 <dom-module id="employee-list">
   <template>
     <div> Employee list: </div>
-    <template is="x-repeat" id="employeeList" items="{{employees}}">
+    <template is="dom-repeat" id="employeeList" items="{{employees}}">
       <div>First name: <span>{{item.first}}</span></div>
       <div>Last name: <span>{{item.last}}</span></div>
       <button on-click="toggleSelection">Select</button>
     </template>
 
-    <x-array-selector id="selector" items="{{employees}}" selected="{{selected}}" multi toggle></x-array-selector>
+    <array-selector id="selector" items="{{employees}}" selected="{{selected}}" multi toggle></array-selector>
 
     <div> Selected employees: </div>
-    <template is="x-repeat" items="{{selected}}">
+    <template is="dom-repeat" items="{{selected}}">
         <div>First name: <span>{{item.first}}</span></div>
         <div>Last name: <span>{{item.last}}</span></div>
     </template>
@@ -29,19 +29,21 @@
   </template>
 
   <script>
-    Polymer({
-      is: 'employee-list',
-      ready: function() {
-        this.employees = [
-          {first: 'Bob', last: 'Smith', type: 'manager'},
-          {first: 'Sally', last: 'Johnson', type: 'manager'},
-          {first: 'John', last: 'Doe', type: 'engineer'}
-        ];
-      },
-      toggleSelection: function(e) {
-        var item = this.$.employeeList.itemForElement(e.target);
-        this.$.selector.select(item);
-      }
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'employee-list',
+        ready: function() {
+          this.employees = [
+            {first: 'Bob', last: 'Smith', type: 'manager'},
+            {first: 'Sally', last: 'Johnson', type: 'manager'},
+            {first: 'John', last: 'Doe', type: 'engineer'}
+          ];
+        },
+        toggleSelection: function(e) {
+          var item = this.$.employeeList.itemForElement(e.target);
+          this.$.selector.select(item);
+        }
+      });
     });
   </script>
 </dom-module>

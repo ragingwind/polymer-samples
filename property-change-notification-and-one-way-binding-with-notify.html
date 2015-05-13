@@ -16,38 +16,38 @@
 </dom-module>
 
 <script>
-  Polymer({
-    is: "custom-elements",
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: "custom-elements",
 
-    properties: {
-      value: {
-        type: String,
-        observer: 'valueChanged'
+      properties: {
+        value: {
+          type: String,
+          observer: 'valueChanged'
+        }
+      },
+
+      valueChanged: function(newVal, oldVal) {
+        console.log('Host value has been changed', newVal);
       }
-    },
+    })
 
-    valueChanged: function(newVal, oldVal) {
-      console.log('Host value has been changed', newVal);
-    }
-  })
+    Polymer({
+      is: 'custom-element',
 
-  Polymer({
-    is: 'custom-element',
+      properties: {
+        prop: {
+          type: String,
+          notify: false,
+          observer: 'propChanged'
+        }
+      },
 
-    properties: {
-      prop: {
-        type: String,
-        notify: false,
-        observer: 'propChanged'
+      propChanged: function(newVal, oldVal) {
+        console.log('Child prop has been changed', newVal);
       }
-    },
+    });
 
-    propChanged: function(newVal, oldVal) {
-      console.log('Child prop has been changed', newVal);
-    }
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
     var css = document.querySelector('custom-elements');
     var cs = document.querySelector('custom-element');
 

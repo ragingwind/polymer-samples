@@ -11,16 +11,18 @@
 </head>
 <body>
 <script>
-  Polymer({
-    is: 'polymer-setting',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'polymer-setting',
 
-    ready: function() {
-      var settings = [];
-      Object.keys(Polymer.Settings).forEach(function(opt) {
-        settings.push(opt + ': ' + Polymer.Settings[opt]);
-      });
-      this.innerHTML = settings.join('<br>');
-    }
+      ready: function() {
+        var settings = [];
+        Object.keys(Polymer.Settings).forEach(function(opt) {
+          settings.push(opt + ': ' + Polymer.Settings[opt]);
+        });
+        this.innerHTML = settings.join('<br>');
+      }
+    });
   });
 </script>
 

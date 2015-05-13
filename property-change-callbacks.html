@@ -24,31 +24,31 @@
 </dom-module>
 
 <script>
-  Polymer({
-    is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-    properties: {
-      disabled: {
-        type: Boolean,
-        observer: 'disabledChanged'
+      properties: {
+        disabled: {
+          type: Boolean,
+          observer: 'disabledChanged'
+        },
+        highlight: {
+          observer: 'highlightChanged'
+        }
       },
-      highlight: {
-        observer: 'highlightChanged'
+      disabledChanged: function(newValue, oldValue) {
+        this.toggleClass('disabled', newValue);
+        this.highlight = true;
+      },
+      highlightChanged: function() {
+        this.classList.add('highlight');
+        setTimeout(function() {
+          this.classList.remove('highlight');
+        }.bind(this), 300);
       }
-    },
-    disabledChanged: function(newValue, oldValue) {
-      this.toggleClass('disabled', newValue);
-      this.highlight = true;
-    },
-    highlightChanged: function() {
-      this.classList.add('highlight');
-      setTimeout(function() {
-        this.classList.remove('highlight');
-      }.bind(this), 300);
-    }
-  });
+    });
 
-  document.addEventListener('DOMContentLoaded', function() {
     var xs = document.querySelector('x-custom');
     setTimeout(function() {
       xs.disabled = true;

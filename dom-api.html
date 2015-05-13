@@ -6,7 +6,7 @@
 	<title>Polymer Samples - DOM API</title>
 	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
   <script src="debug.js"></script>
-  <script src="/bower_components/chai/chai.js"></script>
+  <script src="./bower_components/chai/chai.js"></script>
 	<link rel="import" href="./bower_components/polymer/polymer.html">
 </head>
 <body>
@@ -35,50 +35,52 @@
 </dom-module>
 
 <script>
-  var assert = chai.assert;
+  document.addEventListener('WebComponentsReady', function() {
+    var assert = chai.assert;
 
-  // access any-dom
-  Polymer({
-    is: 'dom-apis-anynode',
+    // access any-dom
+    Polymer({
+      is: 'dom-apis-anynode',
 
-    ready: function() {
-      var toLight = document.createElement('div');
-      Polymer.dom(this).appendChild(toLight);
+      ready: function() {
+        var toLight = document.createElement('div');
+        Polymer.dom(this).appendChild(toLight);
 
-      var toLocal = document.createElement('div');
-      var beforeNode = Polymer.dom(this.root).childNodes[0];
-      Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
+        var toLocal = document.createElement('div');
+        var beforeNode = Polymer.dom(this.root).childNodes[0];
+        Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
 
-      var allDivs = Polymer.dom(this).querySelectorAll('div');
-      console.log('allDivs', allDivs);
-      var allSpans = Polymer.dom().querySelectorAll('span');
-      console.log('allSpans', allSpans);
-    }
+        var allDivs = Polymer.dom(this).querySelectorAll('div');
+        console.log('allDivs', allDivs);
+        var allSpans = Polymer.dom().querySelectorAll('span');
+        console.log('allSpans', allSpans);
+      }
+    });
+
+    // access local-dom
+    Polymer({
+      is: 'dom-apis-local-dom',
+
+      ready: function() {
+        var insert = document.createElement('div');
+        insert.innerHTML = 'insert';
+        Polymer.dom(this.$.container).insertBefore(insert, this.$.first);
+      }
+    });
+
+    Polymer({
+      is: 'x-foo',
+    });
+
+    var xFoo = document.querySelector('x-foo');
+    var div = Polymer.dom(xFoo).querySelector('div');
+    var content = Polymer.dom(xFoo.root).querySelector('content');
+    var distributed = Polymer.dom(content).getDistributedNodes()[0];
+    var insertedTo = Polymer.dom(div).getDestinationInsertionPoints()[0];
+
+    assert.equal(distributed, div);
+    assert.equal(insertedTo, content);
   });
-
-  // access local-dom
-  Polymer({
-    is: 'dom-apis-local-dom',
-
-    ready: function() {
-      var insert = document.createElement('div');
-      insert.innerHTML = 'insert';
-      Polymer.dom(this.$.container).insertBefore(insert, this.$.first);
-    }
-  });
-
-  Polymer({
-    is: 'x-foo',
-  });
-
-  var xFoo = document.querySelector('x-foo');
-  var div = Polymer.dom(xFoo).querySelector('div');
-  var content = Polymer.dom(xFoo.root).querySelector('content');
-  var distributed = Polymer.dom(content).getDistributedNodes()[0];
-  var insertedTo = Polymer.dom(div).getDestinationInsertionPoints()[0];
-
-  assert.equal(distributed, div);
-  assert.equal(insertedTo, content);
 </script>
 </body>
 </html>

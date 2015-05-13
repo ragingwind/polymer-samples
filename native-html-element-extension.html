@@ -12,25 +12,27 @@
 <!-- extend a native HTML element. not extend to Polymer element -->
 <!-- <my-input></my-input> -->
 <script>
-  var MyInput = Polymer({
-    is: 'my-input',
+  document.addEventListener('WebComponentsReady', function() {
+    var MyInput = Polymer({
+      is: 'my-input',
 
-    extends: 'input',
+      extends: 'input',
 
-    created: function() {
-      this.style.border = '1px solid red';
-    }
+      created: function() {
+        this.style.border = '1px solid red';
+      }
+    });
+
+    var el1 = new MyInput();
+    console.log(el1 instanceof HTMLInputElement); // true
+    document.createElement('my-input', MyInput);
+
+    var el2 = document.createElement('input', 'my-input');
+    console.log(el2 instanceof HTMLInputElement); // true
+
+    document.body.appendChild(el1);
+    document.body.appendChild(el2);
   });
-
-  var el1 = new MyInput();
-  console.log(el1 instanceof HTMLInputElement); // true
-  document.createElement('my-input', MyInput);
-
-  var el2 = document.createElement('input', 'my-input');
-  console.log(el2 instanceof HTMLInputElement); // true
-
-  document.body.appendChild(el1);
-  document.body.appendChild(el2);
 </script>
 </body>
 </html>

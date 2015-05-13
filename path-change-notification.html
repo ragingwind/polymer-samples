@@ -37,14 +37,14 @@
       },
 
       reassignManagerWithSetPathValye: function(newManager) {
-        this.setPathValue('user.manager', newManager);
+        this.set('user.manager', newManager);
       },
 
       ready: function() {
         this.reassignManager({name: 'John Doe'});
 
         setTimeout(function() {
-          this.reassignManagerWithSetPathValye({name: 'Jane Doe'})
+          this.reassignManagerWithSetPathValye({name: 'New Jane Doe'})
         }.bind(this), 500);
       }
     });

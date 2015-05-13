@@ -16,17 +16,19 @@
 </dom-module>
 
 <script>
-  Polymer({
-    is: 'x-custom',
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
 
-    properties: {
-      first: String,
-      last: String,
-    },
+      properties: {
+        first: String,
+        last: String,
+      },
 
-    computeFullName: function(first, last) {
-      return first + ' ' + last;
-    }
+      computeFullName: function(first, last) {
+        return first + ' ' + last;
+      }
+    });
   });
 </script>
 

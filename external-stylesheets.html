@@ -18,8 +18,10 @@
   </template>
 
   <script>
-    Polymer({
-      is: 'my-awesome-button',
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-awesome-button',
+      });
     });
   </script>
 </dom-module>

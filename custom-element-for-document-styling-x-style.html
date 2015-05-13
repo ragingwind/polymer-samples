@@ -36,14 +36,16 @@
     <span class="title">{{title}}</span>
 	</template>
   <script>
-    Polymer({
-      is: 'custom-element',
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'custom-element',
 
-      properties: {
-        title: String
-      },
+        properties: {
+          title: String
+        },
 
-      enableCustomStyleProperties: true
+        enableCustomStyleProperties: true
+      });
     });
   </script>
 </dom-module>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+  <title>Polymer Samples - Gesture event</title>
+  <script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+  <link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="drag-me">
+  <style>
+    #dragme {
+      width: 500px;
+      height: 500px;
+      background: gray;
+    }
+  </style>
+  <template>
+    <div id="dragme">{{message}}</div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'drag-me',
+    // register listener for tracking
+    listeners: {
+      track: 'handleTrack'
+    },
+    handleTrack: function(e) {
+      switch(e.detail.state) {
+        case 'start':
+          this.message = 'Tracking started!';
+          break;
+        case 'track':
+          this.message = 'Tracking in progress... ' +
+            e.detail.x + ', ' + e.detail.y;
+          break;
+        case 'end':
+          this.message = 'Tracking ended!';
+          break;
+      }
+    }
+  });
+</script>
+
+<drag-me message="drag me"></drag-me>
+</body>
+</html>

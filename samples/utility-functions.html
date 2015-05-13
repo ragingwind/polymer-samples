@@ -79,8 +79,8 @@
 
         this.async(function() {
           this.$.my.fire('said-hello', {name: this.localName});
-          this.transform(this, 'translate(100px) rotate(20deg)');
-          this.translate3d(this.$.my, '50px', '50px', '0')
+          this.transform('translate(100px) rotate(20deg)');
+          this.translate3d('50px', '50px', '0', this.$.my)
         }.bind(this), 700);
       }
     });

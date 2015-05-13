@@ -12,16 +12,16 @@
 <dom-module id="employee-list">
   <template>
     <div> Employee list: </div>
-    <template is="x-repeat" id="employeeList" items="{{employees}}">
+    <template is="dom-repeat" id="employeeList" items="{{employees}}">
       <div>First name: <span>{{item.first}}</span></div>
       <div>Last name: <span>{{item.last}}</span></div>
       <button on-click="toggleSelection">Select</button>
     </template>
 
-    <x-array-selector id="selector" items="{{employees}}" selected="{{selected}}" multi toggle></x-array-selector>
+    <array-selector id="selector" items="{{employees}}" selected="{{selected}}" multi toggle></array-selector>
 
     <div> Selected employees: </div>
-    <template is="x-repeat" items="{{selected}}">
+    <template is="dom-repeat" items="{{selected}}">
         <div>First name: <span>{{item.first}}</span></div>
         <div>Last name: <span>{{item.last}}</span></div>
     </template>

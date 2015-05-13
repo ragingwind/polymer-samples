@@ -11,7 +11,7 @@
 <body>
 <my-element id="my-id"></my-element>
 <script>
-  function out(msg) {
+  function log(msg) {
     document.write(msg + '</br>');
     console.log(msg);
   }
@@ -21,19 +21,19 @@
       is: 'my-element',
 
       created: function() {
-        out(this.localName + '#' + this.id + ' was created');
+        log(this.localName + '#' + this.id + ' was created');
       },
 
       attached: function() {
-        out(this.localName + '#' + this.id + ' was attached');
+        log(this.localName + '#' + this.id + ' was attached');
       },
 
       detached: function() {
-        out(this.localName + '#' + this.id + ' was detached');
+        log(this.localName + '#' + this.id + ' was detached');
       },
 
       attributeChanged: function(name, type) {
-        out(this.localName + '#' + this.id + ' attribute ' + name +
+        log(this.localName + '#' + this.id + ' attribute ' + name +
           ' was changed to ' + this.getAttribute(name));
       }
     });

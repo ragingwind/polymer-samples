@@ -14,27 +14,26 @@
     :host {
       padding: 4px;
       background-color: gray;
-      mixin(--my-toolbar-theme);
+      @apply(--my-toolbar-theme);
     }
     .title {
-      mixin(--my-toolbar-title-theme);
+      @apply(--my-toolbar-title-theme);
     }
   </style>
 
   <template>
-    <span class="title">{{title}}</span>
+    <span class="title">{{label}}</span>
   </template>
 
   <script>
-    Polymer({
-      is: 'my-toolbar',
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-toolbar',
 
-      properties: {
-        title: String
-      },
-
-      // The custom properties shim is currently an opt-in feature
-      enableCustomStyleProperties: true
+        properties: {
+          label: String
+        }
+      });
     });
   </script>
 </dom-module>
@@ -60,13 +59,12 @@
         font-weight: bold;
       }
     }
-
   </style>
 
   <template>
-    <my-toolbar title="This one is green."></my-toolbar>
-    <my-toolbar title="This one is green too."></my-toolbar>
-    <my-toolbar class="warning" title="This one is red."></my-toolbar>
+    <my-toolbar label="It doesn't work well now"></my-toolbar>
+    <my-toolbar label="This one is green too."></my-toolbar>
+    <my-toolbar class="warning" label="This one is red."></my-toolbar>
   </template>
 
   <script>

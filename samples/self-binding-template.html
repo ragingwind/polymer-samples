@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
-	<title>Polymer Samples - Auto-binding template</title>
+	<title>Polymer Samples - Self-binding template</title>
 	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
   <script src="debug.js"></script>
 	<link rel="import" href="./bower_components/polymer/polymer.html">
@@ -11,8 +11,8 @@
 <body>
   <!-- Wrap elements in with auto-binding template to -->
   <!-- allow use of Polymer bindings main document -->
-  <template is="x-autobind" id="main-template">
-    <template is="x-repeat" items="{{data}}">
+  <template is="dom-bind" id="main-template">
+    <template is="dom-repeat" items="{{data}}">
       <div><span>{{item.first}}</span> <span>{{item.last}}</span></div>
     </template>
   </template>

@@ -16,20 +16,19 @@
 </dom-module>
 
 <script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'custom-element',
+  Polymer({
+    is: 'custom-element',
 
-      properties: {
-        enabled: false
-      },
+    properties: {
+      enabled: false
+    },
 
-      ready: function() {
-        setInterval(function() {
-          this.enabled = !this.enabled;
-        }.bind(this), 500);
-      }
-    });
+    ready: function() {
+      setInterval(function() {
+        this.enabled = !this.enabled;
+        this.innerHTML = 'Custom Element ' + this.enabled;
+      }.bind(this), 500);
+    }
   });
 </script>
 

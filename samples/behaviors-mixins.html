@@ -3,25 +3,26 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
-	<title>Polymer Samples - Prototype mixins</title>
+	<title>Polymer Samples - Behaviors mixins</title>
 	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
   <script src="debug.js"></script>
 	<link rel="import" href="./bower_components/polymer/polymer.html">
+  <style>
+    .highlighted {
+      color: red;
+      font-weight: 800;
+    }
+  </style>
   <!-- import mixin html -->
-  <link rel="import" href="fun-mixin.html">
+  <link rel="import" href="highlight-behavior.html">
 </head>
 <body>
-<my-element></my-element>
+<my-element>Click me</my-element>
 <script>
   document.addEventListener('WebComponentsReady', function() {
     Polymer({
       is: 'my-element',
-
-      mixins: [FunMixin],
-
-      created: function() {
-        this.funCreatedCallback();
-      }
+      behaviors: [HighlightBehavior]
     });
   });
 </script>

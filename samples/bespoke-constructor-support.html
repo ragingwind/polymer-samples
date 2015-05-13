@@ -15,7 +15,7 @@
     var MyElement = Polymer({
       is: 'my-element',
 
-      constructor: function(foo, bar) {
+      factoryImpl: function(foo, bar) {
         this.foo = foo;
         this.configureWithBar(bar);
       },

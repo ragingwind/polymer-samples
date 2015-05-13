@@ -13,11 +13,11 @@
 <dom-module id="employee-list">
   <template>
     <div> Employee list: </div>
-    <template is="x-repeat" items="{{employees}}">
+    <template is="dom-repeat" items="{{employees}}">
       <div>First name: <span>{{item.first}}</span> Last name: <span>{{item.last}}</span> Type: <span>{{item.type}}</span></div>
     </template>
     <div> Filtered Employee list: </div>
-    <template is="x-repeat" items="{{employees}}" filter="isEngineer" observe="type">
+    <template is="dom-repeat" items="{{employees}}" filter="isEngineer" observe="type">
       <div>First name: <span>{{item.first}}</span> Last name: <span>{{item.last}}</span> type: <span>{{item.type}}</span></div>
     </template>
   </template>
@@ -28,7 +28,7 @@
         is: 'employee-list',
 
         isEngineer: function(item) {
-          return item.type === 'engineer';
+          return item && item.type === 'engineer';
         },
 
         ready: function() {
@@ -39,13 +39,15 @@
           ];
 
           this.async(function() {
+            console.log('push');
             this.employees.push({
               first: 'Rod',
               last: 'Dodson',
               type: 'engineer'
-            })
+            });
 
-            this.setPathValue('employees.1.type', 'engineer');
+            this.set('employees.1.type', 'engineer');
+            console.log('current', this.employees);
           }.bind(this));
         }
       });

@@ -3,16 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
-	<title>Polymer Samples - Property change callbacks for multiple properties</title>
+	<title>Polymer Samples - Multiple-property Observation</title>
 	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
   <script src="debug.js"></script>
 	<link rel="import" href="./bower_components/polymer/polymer.html">
 </head>
 <body>
-<x-custom></x-custom>
-
 <script>
   document.addEventListener('WebComponentsReady', function() {
+
     Polymer({
       is: 'x-custom',
 
@@ -22,11 +21,12 @@
         size: String
       },
 
-      observers: {
-        'preload src size': 'updateImage'
-      },
+      observers: [
+        'updateImage(preload, src, size)'
+      ],
 
       updateImage: function(preload, src, size) {
+        console.log(arguments);
         this.innerHTML = [
           'Uploading image by',
           ' preload:', preload || false,
@@ -35,14 +35,16 @@
         ].join('');
       }
     });
-  });
 
-  document.addEventListener('DOMContentLoaded', function() {
     var xs = document.querySelector('x-custom');
 
-    xs.preload = true;
+    // all properties are must changed
+    xs.preload = false;
     xs.src = "100px";
+    xs.size = 0;
   });
 </script>
+
+<x-custom></x-custom>
 </body>
 </html>

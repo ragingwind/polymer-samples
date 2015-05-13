@@ -3,23 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
-  <title>Polymer Working Samples for 0.8</title>
+  <title>Polymer Working Samples for 0.9</title>
+  <style>
+    table {
+      border-color: gray;
+      border-spacing: 0;
+    }
+
+    td {
+      padding: 6px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Polymer Working Samples for 0.8</h2>
-  <p>The sample shows how to works Polymer 0.8. Many samples output their log to console. So console window of the browser should be opened to watch the logs. Currently Polymer 0.8 has been changing everyday, thus It can be possible that a few of samples could not works properly by version changing. We will keep tracking their changes. The sample list according to <a href="https://github.com/Polymer/polymer/blob/0.8-preview/PRIMER.md">Polymer 0.8 Primer content</a></p>
+  <h2>Polymer Working Samples for 0.9</h2>
+  <p>The sample shows how to works Polymer 0.9. Many samples output their log to console. So console window of the browser should be opened to watch the logs. Currently Polymer 0.9 has been changing everyday, thus It can be possible that a few of samples could not works properly by version changing. We will keep tracking their changes. The sample list according to <a href="https://github.com/Polymer/polymer/blob/0.9-preview/PRIMER.md">Polymer 0.9 Primer content</a></p>
 
-  <h3>Bare-minum Custom Element sugaring</h3>
+  <h3>Basic Custom Element sugaring</h3>
   <ul>
     <li><a href="./custom-element-constructor.html">Custom element constructor</a></li>
     <li><a href="./custom-element-registration.html">Custom element registration</a></li>
     <li><a href="./bespoke-constructor-support.html">Bespoke constructor support</a></li>
     <li><a href="./basic-lifecycle-callbacks.html">Basic lifecycle callbacks</a></li>
     <li><a href="./native-html-element-extension.html">Native HTML element extension</a></li>
-    <li><a href="./configuring-properties.html">Configuring properties</a></li>
-    <li><a href="./attribute-deserialization.html">Attribute deserialization</a></li>
+    <li><a href="./property-configuration.html">Property configuration</a></li>
+    <li><a href="./attribute-deserialization.html">Attribute deserialization to property</a></li>
     <li><a href="./static-attributes-on-host.html">Static attributes on host</a></li>
-    <li><a href="./prototype-mixins.html">Prototype mixins</a></li>
+    <li><a href="./behaviors-mixins.html">Behaviors mixins</a></li>
   </ul>
 
   <h3>Template stamped into "local DOM" and tree lifecycle</h3>
@@ -29,25 +39,30 @@
     <li><a href="./dom-re-distribution.html">DOM re-distribution</a></li>
     <li><a href="./dom-api.html">DOM API</a></li>
     <li><a href="./configuring-default-property-values.html">Configuring default values</a></li>
-    <li><a href="https://github.com/Polymer/polymer/blob/0.8-preview/PRIMER.md#ready-method">Bottom-up callback after configuration</a></li>
+    <li><a href="https://github.com/Polymer/polymer/blob/0.9-testable-builds/PRIMER.md#ready-method">Bottom-up callback after configuration</a></li>
   </ul>
 
-  <h3>Declarative data binding, events, and property effects</h3>
+  <h3>Node marshaling and events</h3>
   <ul>
     <li><a href="./local-node-marshalling.html">Local node marshalling</a></li>
     <li><a href="./event-listener-setup.html">Event listener setup</a></li>
     <li><a href="./annotated-event-listener-setup.html">Annotated event listener setup</a></li>
-    <li>Property change callbacks
-      <ul>
-        <li><a href="./property-change-callbacks.html">Property change callbacks</a></li>
-        <li><a href="./property-change-callbacks-for-multiple-properties.html">Property change callbacks for multiple properties</a></li>
-        <li><a href="./property-change-callbacks-for-object.html">Property change callbacks for object/by observers</a></li>
-      </ul>
-    </li>
-    <li>Annotated property binding
-      <ul>
-        <li><a href="./basic-property-binding.html">Basic property binding</a></li>
-        <li>Property change notification
+    <li><a href="./gesture-event-support.html">Gesture event support</li>
+  </ul>
+
+  <h3>Data observation</h3>
+  <ul>
+    <li><a href="./property-change-callbacks.html">Property change callbacks</a></li>
+    <li><a href="./multiple-property-observation.html">Multiple-property observation</a></li>
+    <li><a href="./path-observation.html">Path observation</a></li>
+    <li><a href="./deep-path-observation.html">Deep path observation</a></li>
+    <li><a href="./array-observation.html">Array observation</a></li>
+  </ul>
+
+  <h3>Data binding</h3>
+    <ul>
+      <li><a href="./basic-property-binding.html">Annotated property binding</a></li>
+      <li><a href="https://github.com/Polymer/polymer/blob/0.9-testable-builds/PRIMER.md#property-notification">Property change notification</a>
         <ul>
           <li><a href="./property-change-notification-and-two-way-binding.html">Property change notification and Two-way binding</a></li>
           <li><a href="./property-change-notification-and-one-way-binding-with-square-bracket.html">Property change notification and owo-way binding (downward) with square bracket</a></li>
@@ -58,29 +73,45 @@
       </li>
       <li><a href="./binding-to-structured-data.html">Binding to structured data</a></li>
       <li><a href="./path-change-notification.html">Path change notification</a></li>
-      <li><a href=./expressions-in-binding-annotations.html>Expressions in binding annotations</a></li>
-      </ul>
-    </li>
-    <li><a href="./declarative-attribute-binding.html">Declarative attribute binding</a></li>
-    <li><a href="./binding-to-native-element-attributes.html">Binding to native element attributes</a></li>
+      <li><a href="./array-mutation.html">Array mutation</a></li>
+      <li><a href="./declarative-attribute-binding.html">Declarative attribute binding</a></li>
+      <li><a href="./binding-to-native-element-attributes.html">Binding to native element attributes</a></li>
+    </ul>
+
+  <h3>Advanced property configuration</h3>
+  <ul>
     <li><a href="./reflecting-properties-to-attributes.html">Reflecting properties to attributes</a></li>
     <li><a href="./computed-properties.html">Computed properties</a></li>
     <li><a href="./annotated-computed-properties.html">Annotated computed properties</a></li>
     <li><a href="./read-only-properties.html">Read-only properties</a></li>
-    <li><a href="./utility-functions.html">Utility Functions</a></li>
-    <li><a href="./global-polymer-settings.html">General/Global Polymer settings</a></li>
   </ul>
 
-  <h3>Experimental elements and features</h3>
+  <h3>Advanced styling features</h3>
+  <ul>
+    <li><a href="https://github.com/Polymer/polymer/blob/0.9-testable-builds/PRIMER.md#xscope-styling">Cross-scope styling</a></li>
+      <ul>
+        <li><a href="./custom-css-properties.html">Custom CSS properties</a></li>
+        <li><a href="./custom-css-properties-with-apply.html">Custom CSS properties with @apply</a></li>
+      </ul>
+    <li><a href="./external-stylesheets.html">External stylesheets</a></li>
+
+  </ul>
+
+  <h3>Settings, utility functions, and layering</h3>
+  <ul>
+    <li><a href="./global-polymer-settings.html">General polymer settings</a></li>
+    <li><a href="./utility-functions.html">Utility Functions</a></li>
+    <li><a href="https://github.com/Polymer/polymer/blob/0.9-testable-builds/PRIMER.md#feature-layering">Polymer feature layers</a></li>
+  </ul>
+
+  <h3>Helper Custom Elements</h3>
   <ul>
     <li><a href="./template-repeater.html">Template repeater</a></li>
     <li><a href="./array-selector.html">Array selector</a></li>
-    <li><a href="./auto-binding-template.html">Auto-binding template</a></li>
-    <li><a href="./custom-css-properties-with-mixin.html">Custom CSS properties with mixin</a></li>
-    <li><a href="./custom-css-properties.html">Custom CSS properties</a></li>
+    <li><a href="./conditional-template.html">conditional template</a></li>
+    <li><a href="./self-binding-template.html">Self-binding template</a></li>
     <li><a href="./custom-element-for-document-styling-x-style.html">Custom element for document styling - x-style</a></li>
-    <li><a href="./external-stylesheets.html">External stylesheets</a></li>
-    <li><a href="./https://github.com/Polymer/polymer/blob/0.8-preview/PRIMER.md#feature-layering">Feature layerings</a></li>
   </ul>
+
 </body>
 </html>

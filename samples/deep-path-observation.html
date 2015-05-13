@@ -20,44 +20,42 @@
         user: Object
       },
 
-      observers: {
-        'user.manager.*': 'userManagerChanged'
-      },
+      observers: [
+        'userManagerChanged(user.manager.*)'
+      ],
 
       log: function(msg) {
         this.innerHTML += msg + '</br>'
         console.log(msg);
       },
 
-      userManagerChanged: function(newValue, oldValue, path) {
-        if (path) {
-          // sub-property of user.manager changed
-          this.log('manager ' + path.split('.').pop() + ' changed to ' + newValue);
+      userManagerChanged: function(changeRecord) {
+        if (changeRecord.base && changeRecord.path == 'user.manager') {
+          // user.manager object itself changed
+          this.log('new manager name is ' + changeRecord.base.name ? changeRecord.base.name : 'Unknown');
         } else {
-          // user object itself changed
-          this.log('new object is ' + newValue);
+          // sub-property of user.manager changed
+          this.log(changeRecord.path + ' changed to ' + changeRecord.value);
         }
       },
     });
-  });
 
-  document.addEventListener('DOMContentLoaded', function() {
     var xs = document.querySelector('x-custom');
 
     // 1. event with no path
-    xs.setPathValue('user', {manager: {name: 'John Doe'}});
+    xs.set('user', {manager: {name: 'John Doe'}});
 
     // 3. event with `user.manager` path
-    xs.setPathValue('user.manager', new Object);
+    xs.set('user.manager', new Object);
 
     // 2. event with `user.manager.name`
-    xs.setPathValue('user.manager.name', 'Jane Doe');
+    xs.set('user.manager.name', 'Jane Doe');
 
     // missed fire events
     xs.user.manager.name = 'Hong Gil';
 
     // 4. event with no path
-    xs.setPathValue('user', undefined);
+    xs.set('user', undefined);
   });
 </script>
 </body>

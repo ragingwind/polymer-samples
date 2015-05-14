@@ -47,14 +47,16 @@
       }
     });
 
-    var xs = document.querySelector('x-custom');
+    setTimeout(function() {
+      var xs = document.querySelector('x-custom');
 
-    // @WILLBE-REMOVED
-    // https://github.com/Polymer/polymer/issues/1523
-    xs.addEventListener('users-changed', xs.usersAddedOrRemoved);
+      // @WILLBE-REMOVED
+      // https://github.com/Polymer/polymer/issues/1523
+      xs.addEventListener('users-changed', xs.usersAddedOrRemoved);
 
-    xs.addUser('John');
-    xs.removeUser('John');
+      xs.addUser('John');
+      xs.removeUser('John');
+    }, 500)
   });
 </script>
 </body>

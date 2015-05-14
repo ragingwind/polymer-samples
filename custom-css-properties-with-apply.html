@@ -46,10 +46,10 @@
         background-color: green;
         border-radius: 4px;
         border: 1px solid gray;
-      }
+      };
       --my-toolbar-title-theme: {
-        color: green;
-      }
+        color: white;
+      };
     }
 
     /* Make only toolbars with the .warning class red and bold */
@@ -57,12 +57,12 @@
       --my-toolbar-title-theme: {
         color: red;
         font-weight: bold;
-      }
+      };
     }
   </style>
 
   <template>
-    <my-toolbar label="It doesn't work well now"></my-toolbar>
+    <my-toolbar label="This one is green."></my-toolbar>
     <my-toolbar label="This one is green too."></my-toolbar>
     <my-toolbar class="warning" label="This one is red."></my-toolbar>
   </template>

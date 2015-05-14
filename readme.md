@@ -2,6 +2,8 @@
 
 > Polymer runnable samples for latest version of [Polymer](https://github.com/polymer/polymer)
 
+Live demo is [here](http://ragingwind.github.io/polymer-samples/)
+
 ## Run server
 
 Please make sure that NPM has been installed before you run gulp

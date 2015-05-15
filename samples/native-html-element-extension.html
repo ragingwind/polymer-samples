@@ -30,8 +30,9 @@
     var el2 = document.createElement('input', 'my-input');
     console.log(el2 instanceof HTMLInputElement); // true
 
-    document.body.appendChild(el1);
-    document.body.appendChild(el2);
+    var first = document.body.firstChild;
+    document.body.insertBefore(el1, first);
+    document.body.insertBefore(el2, first);
   });
 </script>
 </body>

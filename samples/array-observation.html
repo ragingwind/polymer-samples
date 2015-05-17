@@ -17,7 +17,10 @@
       is: 'x-custom',
 
       properties: {
-        users: Array
+        users: {
+          type: Array,
+          value: []
+        }
       },
 
       observers: [
@@ -29,7 +32,7 @@
           return;
         }
 
-        changeRecord.detail.value.indexSplices.forEach(function(s) {
+        changeRecord.indexSplices.forEach(function(s) {
           s.removed.forEach(function(user) {
             console.log(user + ' was removed');
           });
@@ -49,11 +52,6 @@
 
     setTimeout(function() {
       var xs = document.querySelector('x-custom');
-
-      // @WILLBE-REMOVED
-      // https://github.com/Polymer/polymer/issues/1523
-      xs.addEventListener('users-changed', xs.usersAddedOrRemoved);
-
       xs.addUser('John');
       xs.removeUser('John');
     }, 500)

@@ -4,6 +4,14 @@
 
 Live demo is [here](http://ragingwind.github.io/polymer-samples/)
 
+## Preparation
+
+Should install all dependencies before run
+
+```
+npm install && bower install
+```
+
 ## Run server
 
 Please make sure that NPM has been installed before you run gulp

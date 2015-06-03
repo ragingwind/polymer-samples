@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+  <title>Polymer Samples - Array mutation</title>
+  <script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+  <link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="custom-element">
+  <template>
+    <template is="dom-repeat">{{users}}</template>
+  </template>
+</dom-module>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'custom-element',
+
+      properties: {
+        users: Array
+      },
+
+      addUser: function(user) {
+        this.push('users', user);
+      },
+
+      removeUser: function(user) {
+        var index = this.users.indexOf(user);
+        this.splice('users', index, 1);
+      }
+
+    });
+
+    setTimeout(function() {
+      var xs = document.querySelector('custom-element');
+      xs.addUser('John');
+      xs.addUser('Jimmy');
+
+      console.log(xs.users);
+    }, 500);
+  });
+</script>
+<custom-element users=[]></custom-element>
+</body>
+</html>

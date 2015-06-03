@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+  <title>Polymer Samples - Conditional template</title>
+  <script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+  <link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="user-page">
+  <template>
+    All users will see this:
+    <div>{{user.name}}</div>
+    <template is="dom-if" if="{{user.isAdmin}}">
+      Only admins will see this.
+      <div>{{user.secretAdminStuff}}</div>
+    </template>
+  </template>
+
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'user-page',
+        properties: {
+          user: Object
+        }
+      });
+    });
+  </script>
+</dom-module>
+
+<user-page user='{"name": "John", "isAdmin": "true"}'></user-page>
+</body>
+</html>

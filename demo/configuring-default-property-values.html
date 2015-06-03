@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Configuring default property values</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="./bower_components/chai/chai.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<x-custom></x-custom>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    var assert = chai.assert;
+
+    Polymer({
+      is: 'x-custom',
+
+      properties: {
+        mode: {
+          type: String,
+          value: 'auto'
+        },
+        data: {
+          type: Object,
+          notify: true,
+          value: function() {
+            return {
+              value: 10
+            };
+          }
+        }
+      },
+
+      ready: function() {
+        assert(this.data.value);
+        assert.equal(this.data.value, 10);
+        this.innerHTML = 'All is well';
+      }
+    });
+  });
+</script>
+</body>
+</html>

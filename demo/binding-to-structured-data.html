@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Binding to structured data</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="user-element">
+  <template>
+    user-element: <div>{{user.manager.name}}</div>
+  </template>
+</dom-module>
+
+<dom-module id="custom-element">
+  <template>
+    custom-element: <div>{{user.manager.name}}</div>
+    <user-element user="{{user}}"></user-element>
+  </template>
+</dom-module>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'user-element'
+    });
+
+    Polymer({
+      is: 'custom-element',
+
+      properties: {
+        user: {
+          type: Object,
+          value: {
+            manager: {
+              name: 'John Doe'
+            }
+          }
+        }
+      }
+    });
+  });
+</script>
+
+<custom-element></custom-element>
+</body>
+</html>

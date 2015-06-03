@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Read-only properties</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="custom-element">
+	<template>
+  Response <span>{{response}}</span>
+	</template>
+</dom-module>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'custom-element',
+
+      properties: {
+        response: {
+          type: Object,
+          readOnly: true,
+          notify: true
+        }
+      },
+
+      responseHandler: function(response) {
+        this._setResponse(response);
+      },
+
+      ready: function() {
+        setTimeout(function() {
+          this.responseHandler('loaded');
+        }.bind(this), 500);
+      }
+    });
+  });
+</script>
+
+<!-- ready will not be displayed because It's read-only property-->
+<custom-element response="ready"></custom-element>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Property change callbacks</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<style>
+  .disabled {
+    color:grey;
+    font-style: italic;
+  }
+
+  .highlight {
+    background-color: yellow;
+  }
+</style>
+<body>
+<dom-module id="x-custom">
+  <template>X-Custom</template>
+</dom-module>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
+
+      properties: {
+        disabled: {
+          type: Boolean,
+          observer: 'disabledChanged'
+        },
+        highlight: {
+          observer: 'highlightChanged'
+        }
+      },
+      disabledChanged: function(newValue, oldValue) {
+        this.toggleClass('disabled', newValue);
+        this.highlight = true;
+      },
+      highlightChanged: function() {
+        this.classList.add('highlight');
+        setTimeout(function() {
+          this.classList.remove('highlight');
+        }.bind(this), 300);
+      }
+    });
+
+    var xs = document.querySelector('x-custom');
+    setTimeout(function() {
+      xs.disabled = true;
+    }, 500);
+  });
+</script>
+
+<x-custom></x-custom>
+</body>
+</html>

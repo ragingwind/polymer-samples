@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Static attributes on host</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<!-- result in: <x-custom role="button" aria-disabled tabindex="0"></x-custom> -->
+<x-custom></x-custom>
+<br/>
+<!-- attribute value will be changed in creation time></x-custom> -->
+<x-custom role="tab" tabindex="1"></x-custom>
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
+
+      hostAttributes: {
+        role: 'button',
+        'aria-disabled': true,
+        tabindex: 0
+      },
+
+      attributeChanged: function(attrName, oldVal, newVal) {
+        console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
+      },
+
+      ready: function() {
+        console.log(this.role);
+        this.innerHTML = [
+          'role', this.getAttribute('role'),
+          'aria-disabled', this.getAttribute('aria-disabled'),
+          'tabindex', this.getAttribute('tabindex')
+        ].join(' ');
+      }
+    });
+  });
+</script>
+</body>
+</html>

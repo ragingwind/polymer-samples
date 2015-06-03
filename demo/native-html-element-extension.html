@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Native HTML element extension</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<!-- extend a native HTML element. not extend to Polymer element -->
+<!-- <my-input></my-input> -->
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    var MyInput = Polymer({
+      is: 'my-input',
+
+      extends: 'input',
+
+      created: function() {
+        this.style.border = '1px solid red';
+      }
+    });
+
+    var el1 = new MyInput();
+    console.log(el1 instanceof HTMLInputElement); // true
+    document.createElement('my-input', MyInput);
+
+    var el2 = document.createElement('input', 'my-input');
+    console.log(el2 instanceof HTMLInputElement); // true
+
+    var first = document.body.firstChild;
+    document.body.insertBefore(el1, first);
+    document.body.insertBefore(el2, first);
+  });
+</script>
+</body>
+</html>

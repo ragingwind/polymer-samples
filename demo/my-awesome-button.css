@@ -1,0 +1,8 @@
+button {
+  background-color: grey;
+  color: white;
+}
+
+button:focus {
+  outline: none;
+}

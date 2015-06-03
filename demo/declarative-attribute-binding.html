@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Declarative attribute binding</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="my-element">
+  <template>
+  </template>
+</dom-module>
+
+<dom-module id="custom-element">
+	<template>
+    <!-- Attribute binding -->
+    <my-element id="attr-bind" selected$="{{value}}"></my-element>
+    <!-- results in <my-element>.setAttribute('selected', this.value); -->
+
+    <!-- Property binding -->
+    <my-element id="prop-bind" selected="{{value}}"></my-element>
+    <!-- results in <my-element>.selected = this.value; -->
+	</template>
+</dom-module>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'my-element',
+
+      properties: {
+        selected: {
+          type: String,
+          observer: 'selectedChanged'
+        }
+      },
+
+      attributeChanged: function() {
+        console.log(this.id, 'Attribute has changed');
+      },
+
+      selectedChanged: function() {
+        console.log(this.id, 'Selected has changed');
+      }
+    });
+
+    Polymer({
+      is: 'custom-element',
+
+      properties: {
+        value: String
+      }
+    });
+  });
+</script>
+
+<custom-element value="default"></custom-element>
+</body>
+</html>

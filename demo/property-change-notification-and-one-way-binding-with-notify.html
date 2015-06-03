@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Property change notification and owo-way binding with notify</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="custom-elements">
+  <template>
+    <custom-element prop="{{value}}"></custom-element>
+  </template>
+</dom-module>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: "custom-elements",
+
+      properties: {
+        value: {
+          type: String,
+          observer: 'valueChanged'
+        }
+      },
+
+      valueChanged: function(newVal, oldVal) {
+        console.log('Host value has been changed', newVal);
+      }
+    })
+
+    Polymer({
+      is: 'custom-element',
+
+      properties: {
+        prop: {
+          type: String,
+          notify: false,
+          observer: 'propChanged'
+        }
+      },
+
+      propChanged: function(newVal, oldVal) {
+        console.log('Child prop has been changed', newVal);
+      }
+    });
+
+    var css = document.querySelector('custom-elements');
+    var cs = document.querySelector('custom-element');
+
+    setTimeout(function() {
+      css.value = "from host";
+    }, 500);
+
+    setTimeout(function() {
+      cs.prop = "from child";
+    }, 1500);
+  });
+</script>
+
+<custom-elements></custom-elements>
+</body>
+</html>

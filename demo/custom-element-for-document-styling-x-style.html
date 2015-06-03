@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Custom element for document styling - x-style</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+  <style is="x-style">
+    /* Will be prevented from affecting local DOM of Polymer elements */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Can use /deep/ and ::shadow combinators */
+    body /deep/ .my-special-view #thing-inside {
+      background: yellow;
+    }
+
+    /* Custom properties that inherit down the document tree may be defined */
+    * {
+      --my-toolbar-title-color: green;
+    }
+  </style>
+</head>
+<body>
+<dom-module id="custom-element">
+  <style>
+    .title {
+      color: var(--my-toolbar-title-color);
+    }
+  </style>
+	<template>
+    <div id="thing-inside">View</div>
+    <span class="title">{{title}}</span>
+	</template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'custom-element',
+
+        properties: {
+          title: String
+        },
+
+        enableCustomStyleProperties: true
+      });
+    });
+  </script>
+</dom-module>
+
+<custom-element class="my-special-view" title="Custom Element"></custom-element>
+</body>
+</html>

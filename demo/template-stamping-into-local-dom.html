@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Template stamping into local DOM</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<!-- will displayed I am x-foo! -->
+<x-foo></x-foo>
+
+<!-- dom-module element has id named 'x-foo' -->
+<dom-module id="x-foo">
+  <template>I am x-foo!</template>
+</dom-module>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      // assign 'x-foo' id to Polymer
+      is: 'x-foo'
+    });
+  });
+</script>
+</body>
+</html>

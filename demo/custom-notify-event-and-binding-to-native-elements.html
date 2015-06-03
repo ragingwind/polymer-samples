@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+	<title>Polymer Samples - Custom notify event and binding to native elements</title>
+	<script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+	<link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<dom-module id="host-element">
+  <template>
+    <input value="{{hostValue::input}}">
+    <input type="checkbox" checked="{{hostChecked::change}}">
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'host-element',
+
+    properties: {
+      hostValue: {
+        type: String,
+        observer: 'hostValueChanged'
+      },
+      hostChecked: {
+        type: Boolean,
+        observer: 'hostCheckedChanged'
+      },
+    },
+
+    hostValueChanged: function(newVal) {
+      console.log('Input value has been changed', newVal);
+    },
+
+    hostCheckedChanged: function(newVal) {
+      console.log('Checkbox value has been changed', newVal);
+    }
+  });
+</script>
+
+<host-element></host-element>
+</body>
+</html>

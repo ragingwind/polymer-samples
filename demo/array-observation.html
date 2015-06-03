@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+  <title>Polymer Samples - Array observation</title>
+  <script src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="debug.js"></script>
+  <link rel="import" href="./bower_components/polymer/polymer.html">
+</head>
+<body>
+<x-custom users=[]></x-custom>
+
+<script>
+  document.addEventListener('WebComponentsReady', function() {
+    Polymer({
+      is: 'x-custom',
+
+      properties: {
+        users: {
+          type: Array,
+          value: []
+        }
+      },
+
+      observers: [
+        'usersAddedOrRemoved(users.splices)'
+      ],
+
+      usersAddedOrRemoved: function(changeRecord) {
+        if (!changeRecord) {
+          return;
+        }
+
+        changeRecord.indexSplices.forEach(function(s) {
+          s.removed.forEach(function(user) {
+            console.log(user + ' was removed');
+          });
+          console.log(s.addedCount + ' users were added');
+        }, this);
+      },
+
+      addUser: function(user) {
+        this.push('users', user);
+      },
+
+      removeUser: function(user) {
+        var index = this.users.indexOf(user);
+        this.splice('users', index, 1);
+      }
+    });
+
+    setTimeout(function() {
+      var xs = document.querySelector('x-custom');
+      xs.addUser('John');
+      xs.removeUser('John');
+    }, 500)
+  });
+</script>
+</body>
+</html>

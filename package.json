@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "devDependencies": {
+    "gh-pages": "^0.3.0",
+    "polyserve": "^0.4.0"
+  },
+  "scripts": {
+    "run": "polyserve"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

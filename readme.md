@@ -14,16 +14,16 @@ npm install && bower install
 
 ## Run server
 
-Please make sure that NPM has been installed before you run gulp
+Please make sure that npm packages has been installed.
 
 ```
-gulp serve
+npm run serve
 ```
 
 ## Deploy
 
 ```
-gulp deploy
+npm run deploy
 ```
 
 ## Add sample page

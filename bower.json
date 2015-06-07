@@ -1,5 +1,5 @@
 {
-  "name": "ragingwind",
+  "name": "polymer-samples",
   "dependencies": {
     "polymer": "#^1.0.0",
     "chai": "~2.2.0"

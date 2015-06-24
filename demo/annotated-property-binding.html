@@ -24,41 +24,44 @@
     <div>Last: {{last}}</div>
     </p>
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'user-view',
+
+        properties: {
+          first: String,
+          last: String,
+          firstName: String
+        }
+      });
+    });
+  </script>
 </dom-module>
 
 <dom-module id="main-view">
   <template>
     <user-view first-name="{{user.first}}" first="{{user.first}}" last="{{user.last}}"></user-view>
   </template>
-</dom-module>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'main-view',
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'user-view',
-
-      properties: {
-        first: String,
-        last: String,
-        firstName: String
-      }
-    });
-
-    Polymer({
-      is: 'main-view',
-
-      properties: {
-        user: {
-          type: Object,
-          value: {
-            first: 'Samuel',
-            last: 'Adams'
+        properties: {
+          user: {
+            type: Object,
+            value: {
+              first: 'Samuel',
+              last: 'Adams'
+            }
           }
         }
-      }
+      });
     });
-  });
-</script>
+  </script>
+
+</dom-module>
 
 <div>user-view</div>
 <user-view first="Samuel" last="Adams"></user-view>

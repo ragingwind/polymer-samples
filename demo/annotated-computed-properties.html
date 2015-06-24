@@ -13,25 +13,25 @@
   <template>
     My name is <span>{{computeFullName(first, last)}}</span>
   </template>
+  <script>
+    document.addeventlistener('webcomponentsready', function() {
+      polymer({
+        is: 'x-custom',
+
+        properties: {
+          first: string,
+          last: string,
+        },
+
+        computefullname: function(first, last) {
+          return first + ' ' + last;
+        }
+      });
+    });
+  </script>
 </dom-module>
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'x-custom',
 
-      properties: {
-        first: String,
-        last: String,
-      },
-
-      computeFullName: function(first, last) {
-        return first + ' ' + last;
-      }
-    });
-  });
-</script>
-
-<x-custom first="John" last="Doe"></x-custom>
+<x-custom first="john" last="doe"></x-custom>
 </body>
 </html>

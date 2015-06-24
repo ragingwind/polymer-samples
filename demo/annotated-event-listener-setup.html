@@ -15,18 +15,18 @@
   <template>
     <button on-click="handleClick">Kick Me</button>
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'x-custom',
+
+        handleClick: function() {
+          alert('Ow!');
+        }
+      });
+    });
+  </script>
 </dom-module>
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'x-custom',
-
-      handleClick: function() {
-        alert('Ow!');
-      }
-    });
-  });
-</script>
 </body>
 </html>

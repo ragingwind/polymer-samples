@@ -13,6 +13,13 @@
   <template>
     user-element: <div>{{user.manager.name}}</div>
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'user-element'
+      });
+    });
+  </script>
 </dom-module>
 
 <dom-module id="custom-element">
@@ -20,30 +27,25 @@
     custom-element: <div>{{user.manager.name}}</div>
     <user-element user="{{user}}"></user-element>
   </template>
-</dom-module>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'custom-element',
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'user-element'
-    });
-
-    Polymer({
-      is: 'custom-element',
-
-      properties: {
-        user: {
-          type: Object,
-          value: {
-            manager: {
-              name: 'John Doe'
+        properties: {
+          user: {
+            type: Object,
+            value: {
+              manager: {
+                name: 'John Doe'
+              }
             }
           }
         }
-      }
+      });
     });
-  });
-</script>
+  </script>
+</dom-module>
 
 <custom-element></custom-element>
 </body>

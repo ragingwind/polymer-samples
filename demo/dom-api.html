@@ -15,8 +15,31 @@
 <x-foo><div></div></x-foo>
 
 <dom-module id="dom-apis-anynode">
-  <span id="span1"></span>
-  <span id="span2"></span>
+  <template>
+    <span id="span1"></span>
+    <span id="span2"></span>
+  </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'dom-apis-anynode',
+
+        ready: function() {
+          var toLight = document.createElement('div');
+          Polymer.dom(this).appendChild(toLight);
+
+          var toLocal = document.createElement('div');
+          var beforeNode = Polymer.dom(this.root).childNodes[0];
+          Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
+
+          var allDivs = Polymer.dom(this).querySelectorAll('div');
+          console.log('allDivs', allDivs);
+          var allSpans = Polymer.dom().querySelectorAll('span');
+          console.log('allSpans', allSpans);
+        }
+      });
+    });
+  </script>
 </dom-module>
 
 <dom-module id="dom-apis-local-dom">
@@ -26,52 +49,41 @@
        <content></content>
     </div>
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'dom-apis-local-dom',
+
+        ready: function() {
+          var insert = document.createElement('div');
+          insert.innerHTML = 'insert';
+          Polymer.dom(this.$.container).insertBefore(insert, this.$.first);
+        }
+      });
+
+      Polymer({
+        is: 'x-foo',
+      });
+    });
+  </script>
 </dom-module>
 
 <dom-module id="x-foo">
   <template>
     <content></content>
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'x-foo',
+      });
+    });
+  </script>
 </dom-module>
 
 <script>
   document.addEventListener('WebComponentsReady', function() {
     var assert = chai.assert;
-
-    // access any-dom
-    Polymer({
-      is: 'dom-apis-anynode',
-
-      ready: function() {
-        var toLight = document.createElement('div');
-        Polymer.dom(this).appendChild(toLight);
-
-        var toLocal = document.createElement('div');
-        var beforeNode = Polymer.dom(this.root).childNodes[0];
-        Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
-
-        var allDivs = Polymer.dom(this).querySelectorAll('div');
-        console.log('allDivs', allDivs);
-        var allSpans = Polymer.dom().querySelectorAll('span');
-        console.log('allSpans', allSpans);
-      }
-    });
-
-    // access local-dom
-    Polymer({
-      is: 'dom-apis-local-dom',
-
-      ready: function() {
-        var insert = document.createElement('div');
-        insert.innerHTML = 'insert';
-        Polymer.dom(this.$.container).insertBefore(insert, this.$.first);
-      }
-    });
-
-    Polymer({
-      is: 'x-foo',
-    });
-
     var xFoo = document.querySelector('x-foo');
     var div = Polymer.dom(xFoo).querySelector('div');
     var content = Polymer.dom(xFoo.root).querySelector('content');

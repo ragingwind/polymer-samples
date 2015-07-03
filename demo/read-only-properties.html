@@ -13,33 +13,32 @@
 	<template>
   Response <span>{{response}}</span>
 	</template>
-</dom-module>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'custom-element',
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'custom-element',
+        properties: {
+          response: {
+            type: Object,
+            readOnly: true,
+            notify: true
+          }
+        },
 
-      properties: {
-        response: {
-          type: Object,
-          readOnly: true,
-          notify: true
+        responseHandler: function(response) {
+          this._setResponse(response);
+        },
+
+        ready: function() {
+          setTimeout(function() {
+            this.responseHandler('loaded');
+          }.bind(this), 500);
         }
-      },
-
-      responseHandler: function(response) {
-        this._setResponse(response);
-      },
-
-      ready: function() {
-        setTimeout(function() {
-          this.responseHandler('loaded');
-        }.bind(this), 500);
-      }
+      });
     });
-  });
-</script>
+  </script>
+</dom-module>
 
 <!-- ready will not be displayed because It's read-only property-->
 <custom-element response="ready"></custom-element>

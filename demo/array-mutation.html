@@ -13,37 +13,36 @@
   <template>
     <template is="dom-repeat">{{users}}</template>
   </template>
-</dom-module>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'custom-element',
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'custom-element',
+        properties: {
+          users: Array
+        },
 
-      properties: {
-        users: Array
-      },
+        addUser: function(user) {
+          this.push('users', user);
+        },
 
-      addUser: function(user) {
-        this.push('users', user);
-      },
+        removeUser: function(user) {
+          var index = this.users.indexOf(user);
+          this.splice('users', index, 1);
+        }
 
-      removeUser: function(user) {
-        var index = this.users.indexOf(user);
-        this.splice('users', index, 1);
-      }
+      });
 
+      setTimeout(function() {
+        var xs = document.querySelector('custom-element');
+        xs.addUser('John');
+        xs.addUser('Jimmy');
+
+        console.log(xs.users);
+      }, 500);
     });
-
-    setTimeout(function() {
-      var xs = document.querySelector('custom-element');
-      xs.addUser('John');
-      xs.addUser('Jimmy');
-
-      console.log(xs.users);
-    }, 500);
-  });
-</script>
+  </script>
+</dom-module>
 <custom-element users=[]></custom-element>
 </body>
 </html>

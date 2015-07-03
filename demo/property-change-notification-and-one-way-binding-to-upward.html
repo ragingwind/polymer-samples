@@ -13,42 +13,42 @@
   <template>
     <custom-element prop="{{value}}"></custom-element>
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: "custom-elements",
+
+        properties: {
+          value: {
+            type: String,
+            observer: 'valueChanged'
+          }
+        },
+
+        valueChanged: function(newVal, oldVal) {
+          console.log('Host value has been changed', newVal);
+        }
+      })
+
+      Polymer({
+        is: 'custom-element',
+
+        properties: {
+          prop: {
+            type: String,
+            notify: true,
+            readOnly: true,
+          }
+        },
+
+        ready: function() {
+          this._setProp("from child");
+        }
+      });
+    });
+  </script>
 </dom-module>
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: "custom-elements",
-
-      properties: {
-        value: {
-          type: String,
-          observer: 'valueChanged'
-        }
-      },
-
-      valueChanged: function(newVal, oldVal) {
-        console.log('Host value has been changed', newVal);
-      }
-    })
-
-    Polymer({
-      is: 'custom-element',
-
-      properties: {
-        prop: {
-          type: String,
-          notify: true,
-          readOnly: true,
-        }
-      },
-
-      ready: function() {
-        this._setProp("from child");
-      }
-    });
-  });
-</script>
 
 <custom-elements></custom-elements>
 </body>

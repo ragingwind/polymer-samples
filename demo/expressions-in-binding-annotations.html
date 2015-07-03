@@ -13,24 +13,23 @@
   <template>
     <div hidden="{{!enabled}}">Custom Element</div>
   </template>
+  <script>
+    Polymer({
+      is: 'custom-element',
+
+      properties: {
+        enabled: false
+      },
+
+      ready: function() {
+        setInterval(function() {
+          this.enabled = !this.enabled;
+          this.innerHTML = 'Custom Element ' + this.enabled;
+        }.bind(this), 500);
+      }
+    });
+  </script>
 </dom-module>
-
-<script>
-  Polymer({
-    is: 'custom-element',
-
-    properties: {
-      enabled: false
-    },
-
-    ready: function() {
-      setInterval(function() {
-        this.enabled = !this.enabled;
-        this.innerHTML = 'Custom Element ' + this.enabled;
-      }.bind(this), 500);
-    }
-  });
-</script>
 
 <custom-element></custom-element>
 </body>

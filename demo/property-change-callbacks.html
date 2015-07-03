@@ -21,40 +21,40 @@
 <body>
 <dom-module id="x-custom">
   <template>X-Custom</template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'x-custom',
+
+        properties: {
+          disabled: {
+            type: Boolean,
+            observer: 'disabledChanged'
+          },
+          highlight: {
+            observer: 'highlightChanged'
+          }
+        },
+        disabledChanged: function(newValue, oldValue) {
+          this.toggleClass('disabled', newValue);
+          this.highlight = true;
+        },
+        highlightChanged: function() {
+          this.classList.add('highlight');
+          setTimeout(function() {
+            this.classList.remove('highlight');
+          }.bind(this), 300);
+        }
+      });
+
+      var xs = document.querySelector('x-custom');
+      setTimeout(function() {
+        xs.disabled = true;
+      }, 500);
+    });
+  </script>
 </dom-module>
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'x-custom',
-
-      properties: {
-        disabled: {
-          type: Boolean,
-          observer: 'disabledChanged'
-        },
-        highlight: {
-          observer: 'highlightChanged'
-        }
-      },
-      disabledChanged: function(newValue, oldValue) {
-        this.toggleClass('disabled', newValue);
-        this.highlight = true;
-      },
-      highlightChanged: function() {
-        this.classList.add('highlight');
-        setTimeout(function() {
-          this.classList.remove('highlight');
-        }.bind(this), 300);
-      }
-    });
-
-    var xs = document.querySelector('x-custom');
-    setTimeout(function() {
-      xs.disabled = true;
-    }, 500);
-  });
-</script>
 
 <x-custom></x-custom>
 </body>

@@ -14,32 +14,33 @@
     <input value="{{hostValue::input}}">
     <input type="checkbox" checked="{{hostChecked::change}}">
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'host-element',
+
+        properties: {
+          hostValue: {
+            type: String,
+            observer: 'hostValueChanged'
+          },
+          hostChecked: {
+            type: Boolean,
+            observer: 'hostCheckedChanged'
+          },
+        },
+
+        hostValueChanged: function(newVal) {
+          console.log('Input value has been changed', newVal);
+        },
+
+        hostCheckedChanged: function(newVal) {
+          console.log('Checkbox value has been changed', newVal);
+        }
+      });
+    });
+  </script>
 </dom-module>
-
-<script>
-  Polymer({
-    is: 'host-element',
-
-    properties: {
-      hostValue: {
-        type: String,
-        observer: 'hostValueChanged'
-      },
-      hostChecked: {
-        type: Boolean,
-        observer: 'hostCheckedChanged'
-      },
-    },
-
-    hostValueChanged: function(newVal) {
-      console.log('Input value has been changed', newVal);
-    },
-
-    hostCheckedChanged: function(newVal) {
-      console.log('Checkbox value has been changed', newVal);
-    }
-  });
-</script>
 
 <host-element></host-element>
 </body>

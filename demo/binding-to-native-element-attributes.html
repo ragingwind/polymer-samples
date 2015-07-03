@@ -39,41 +39,42 @@
     <!-- dataset -->
     <div id="baz" data-bar$="{{baz}}"></div>
 	</template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'custom-element',
+
+        properties: {
+          foo: {
+            type: String,
+            value: 'enable'
+          },
+          background: {
+            type: String,
+            value: 'background-color:green'
+          },
+          url: {
+            type: String,
+            value: 'https://google.com'
+          },
+          bar: {
+            type: String,
+            value: 'Bar'
+          },
+          baz: {
+            type: String,
+            value: 'baz'
+          }
+        },
+
+        ready: function() {
+          console.log(this.$.bar.getAttribute('for'));
+          console.log(this.$.baz.getAttribute('data-bar'));
+        }
+      });
+    });
+  </script>
 </dom-module>
-
-<script>
-  Polymer({
-    is: 'custom-element',
-
-    properties: {
-      foo: {
-        type: String,
-        value: 'enable'
-      },
-      background: {
-        type: String,
-        value: 'background-color:green'
-      },
-      url: {
-        type: String,
-        value: 'https://google.com'
-      },
-      bar: {
-        type: String,
-        value: 'Bar'
-      },
-      baz: {
-        type: String,
-        value: 'baz'
-      }
-    },
-
-    ready: function() {
-      console.log(this.$.bar.getAttribute('for'));
-      console.log(this.$.baz.getAttribute('data-bar'));
-    }
-  })
-</script>
 
 <custom-element></custom-element>
 </body>

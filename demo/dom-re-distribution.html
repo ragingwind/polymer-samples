@@ -14,7 +14,6 @@
 </my-element>
 
 <dom-module id="my-element">
-
   <style>
     :host {
       display: block;
@@ -27,20 +26,17 @@
       background: orange;
     }
   </style>
-
   <template>
     <div id="child-element">In local Dom!</div>
     <div class="content-wrapper"><content select=".content"></content></div>
   </template>
-
-</dom-module>
-
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'my-element'
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-element'
+      });
     });
-  });
-</script>
+  </script>
+</dom-module>
 </body>
 </html>

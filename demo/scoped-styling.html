@@ -8,8 +8,8 @@
   <script src="debug.js"></script>
 	<link rel="import" href="./bower_components/polymer/polymer.html">
 </head>
+<body>
 <dom-module id="my-element">
-
   <style>
     :host {
       display: block;
@@ -22,22 +22,19 @@
       background: orange;
     }
   </style>
-
   <template>
     <div id="child-element">In local Dom!</div>
     <div class="content-wrapper"><content></content></div>
   </template>
-
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-element'
+      });
+    });
+  </script>
 </dom-module>
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'my-element'
-    });
-  });
-</script>
-<body>
 <my-element>
   <div class="special">I'm special</div>
 </my-element>

@@ -15,15 +15,15 @@
 <!-- dom-module element has id named 'x-foo' -->
 <dom-module id="x-foo">
   <template>I am x-foo!</template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        // assign 'x-foo' id to Polymer
+        is: 'x-foo'
+      });
+    });
+  </script>
 </dom-module>
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      // assign 'x-foo' id to Polymer
-      is: 'x-foo'
-    });
-  });
-</script>
 </body>
 </html>

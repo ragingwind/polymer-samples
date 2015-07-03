@@ -13,43 +13,43 @@
   <template>
     <div>{{user.manager.name}}</div>
   </template>
-</dom-module>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'custom-element',
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'custom-element',
-
-      properties: {
-        user: {
-          type: Object,
-          value: {
-            manager: {
-              name: 'No Name'
+        properties: {
+          user: {
+            type: Object,
+            value: {
+              manager: {
+                name: 'No Name'
+              }
             }
           }
+        },
+
+        reassignManager: function(newManager) {
+          this.user.manager = newManager;
+          this.notifyPath('user.manager', this.user.manager);
+        },
+
+        reassignManagerWithSetPathValye: function(newManager) {
+          this.set('user.manager', newManager);
+        },
+
+        ready: function() {
+          this.reassignManager({name: 'John Doe'});
+
+          setTimeout(function() {
+            this.reassignManagerWithSetPathValye({name: 'New Jane Doe'})
+          }.bind(this), 500);
         }
-      },
-
-      reassignManager: function(newManager) {
-        this.user.manager = newManager;
-        this.notifyPath('user.manager', this.user.manager);
-      },
-
-      reassignManagerWithSetPathValye: function(newManager) {
-        this.set('user.manager', newManager);
-      },
-
-      ready: function() {
-        this.reassignManager({name: 'John Doe'});
-
-        setTimeout(function() {
-          this.reassignManagerWithSetPathValye({name: 'New Jane Doe'})
-        }.bind(this), 500);
-      }
+      });
     });
-  });
-</script>
+  </script>
+</dom-module>
+
 
 <custom-element></custom-element>
 </body>

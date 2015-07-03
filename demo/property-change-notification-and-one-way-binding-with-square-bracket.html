@@ -13,53 +13,53 @@
   <template>
     <custom-element prop="[[value]]"></custom-element>
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: "custom-elements",
+
+        properties: {
+          value: {
+            type: String,
+            observer: 'valueChanged'
+          }
+        },
+
+        valueChanged: function(newVal, oldVal) {
+          console.log('Host value has been changed', newVal);
+        }
+      })
+
+      Polymer({
+        is: 'custom-element',
+
+        properties: {
+          prop: {
+            type: String,
+            notify: true,
+            observer: 'propChanged'
+          }
+        },
+
+        propChanged: function(newVal, oldVal) {
+          console.log('Child prop has been changed', newVal);
+        }
+      });
+
+      var css = document.querySelector('custom-elements');
+      var cs = document.querySelector('custom-element');
+
+      setTimeout(function() {
+        css.value = "from host";
+      }, 500);
+
+      setTimeout(function() {
+        cs.prop = "from child";
+      }, 1500);
+    });
+  </script>
 </dom-module>
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: "custom-elements",
-
-      properties: {
-        value: {
-          type: String,
-          observer: 'valueChanged'
-        }
-      },
-
-      valueChanged: function(newVal, oldVal) {
-        console.log('Host value has been changed', newVal);
-      }
-    })
-
-    Polymer({
-      is: 'custom-element',
-
-      properties: {
-        prop: {
-          type: String,
-          notify: true,
-          observer: 'propChanged'
-        }
-      },
-
-      propChanged: function(newVal, oldVal) {
-        console.log('Child prop has been changed', newVal);
-      }
-    });
-
-    var css = document.querySelector('custom-elements');
-    var cs = document.querySelector('custom-element');
-
-    setTimeout(function() {
-      css.value = "from host";
-    }, 500);
-
-    setTimeout(function() {
-      cs.prop = "from child";
-    }, 1500);
-  });
-</script>
 
 <custom-elements></custom-elements>
 </body>

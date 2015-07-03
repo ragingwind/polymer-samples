@@ -20,27 +20,26 @@
   <template>
     <div id="dragme" on-track="handleTrack">{{message}}</div>
   </template>
-</dom-module>
-
-<script>
-  Polymer({
-    is: 'drag-me',
-    handleTrack: function(e) {
-      switch(e.detail.state) {
-        case 'start':
-          this.message = 'Tracking started!';
-          break;
-        case 'track':
-          this.message = 'Tracking in progress... ' +
-            e.detail.x + ', ' + e.detail.y;
-          break;
-        case 'end':
-          this.message = 'Tracking ended!';
-          break;
+  <script>
+    Polymer({
+      is: 'drag-me',
+      handleTrack: function(e) {
+        switch(e.detail.state) {
+          case 'start':
+            this.message = 'Tracking started!';
+            break;
+          case 'track':
+            this.message = 'Tracking in progress... ' +
+              e.detail.x + ', ' + e.detail.y;
+            break;
+          case 'end':
+            this.message = 'Tracking ended!';
+            break;
+        }
       }
-    }
-  });
-</script>
+    });
+  </script>
+</dom-module>
 
 <drag-me message="drag me"></drag-me>
 </body>

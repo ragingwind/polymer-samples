@@ -34,6 +34,19 @@
 
 <dom-module id="my-element">
   <template>Polymer Utility APIs</template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-element',
+
+        created: function() {
+          this.addEventListener('said-hello', function(e) {
+            this.innerHTML = 'Say hi, from ' + e.detail.name +  ' to ' + e.target.localName;
+          });
+        }
+      });
+    });
+  </script>
 </dom-module>
 
 <dom-module id="custom-element">
@@ -41,51 +54,41 @@
     <span>Custom Element</span>
     <my-element style$="{{position}}" id="my"></my-element>
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'custom-element',
+
+        properties: {
+          position: {
+            type: String,
+            value: 'position:absolute'
+          }
+        },
+
+        created: function() {
+          this.importHref('./fun-mixin.html', function() {
+            FunMixin.makeElementFun.call(this);
+          });
+        },
+
+        ready: function() {
+          this.$.my.toggleClass('toggle');
+          this.toggleAttribute('enable', true);
+          this.attributeFollows('enable', this.$.my);
+
+          this.async(function() {
+            this.$.my.fire('said-hello', {name: this.localName});
+            this.transform('translate(100px) rotate(20deg)');
+            this.translate3d('50px', '50px', '0', this.$.my)
+          }.bind(this), 700);
+        }
+      });
+    });
+  </script>
 </dom-module>
 
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'my-element',
-
-      created: function() {
-        this.addEventListener('said-hello', function(e) {
-          this.innerHTML = 'Say hi, from ' + e.detail.name +  ' to ' + e.target.localName;
-        });
-      }
-    });
-
-    Polymer({
-      is: 'custom-element',
-
-      properties: {
-        position: {
-          type: String,
-          value: 'position:absolute'
-        }
-      },
-
-      created: function() {
-        this.importHref('./fun-mixin.html', function() {
-          FunMixin.makeElementFun.call(this);
-        });
-      },
-
-      ready: function() {
-        this.$.my.toggleClass('toggle');
-        this.toggleAttribute('enable', true);
-        this.attributeFollows('enable', this.$.my);
-
-        this.async(function() {
-          this.$.my.fire('said-hello', {name: this.localName});
-          this.transform('translate(100px) rotate(20deg)');
-          this.translate3d('50px', '50px', '0', this.$.my)
-        }.bind(this), 700);
-      }
-    });
-  });
-</script>
 
 <custom-element></custom-element>
 </body>

@@ -15,18 +15,18 @@
   <template>
     Hello World from <span id="name"></span>!
   </template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'x-custom',
+
+        attached: function() {
+          this.$.name.textContent = this.localName;
+        }
+      });
+    });
+  </script>
 </dom-module>
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'x-custom',
-
-      attached: function() {
-        this.$.name.textContent = this.localName;
-      }
-    });
-  });
-</script>
 </body>
 </html>

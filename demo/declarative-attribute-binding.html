@@ -10,8 +10,29 @@
 </head>
 <body>
 <dom-module id="my-element">
-  <template>
-  </template>
+  <template></template>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'my-element',
+
+        properties: {
+          selected: {
+            type: String,
+            observer: 'selectedChanged'
+          }
+        },
+
+        attributeChanged: function() {
+          console.log(this.id, 'Attribute has changed');
+        },
+
+        selectedChanged: function() {
+          console.log(this.id, 'Selected has changed');
+        }
+      });
+    });
+  </script>
 </dom-module>
 
 <dom-module id="custom-element">
@@ -24,38 +45,18 @@
     <my-element id="prop-bind" selected="{{value}}"></my-element>
     <!-- results in <my-element>.selected = this.value; -->
 	</template>
-</dom-module>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'custom-element',
 
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    Polymer({
-      is: 'my-element',
-
-      properties: {
-        selected: {
-          type: String,
-          observer: 'selectedChanged'
+        properties: {
+          value: String
         }
-      },
-
-      attributeChanged: function() {
-        console.log(this.id, 'Attribute has changed');
-      },
-
-      selectedChanged: function() {
-        console.log(this.id, 'Selected has changed');
-      }
+      });
     });
-
-    Polymer({
-      is: 'custom-element',
-
-      properties: {
-        value: String
-      }
-    });
-  });
-</script>
+  </script>
+</dom-module>
 
 <custom-element value="default"></custom-element>
 </body>

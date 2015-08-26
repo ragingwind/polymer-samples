@@ -2,7 +2,7 @@
 
   function showDebugMenu() {
     var debugMenu = document.createElement('div');
-    var baseUrl = 'https://github.com/ragingwind/polymer-samples/blob/master/samples/';
+    var baseUrl = 'https://github.com/ragingwind/polymer-samples/blob/master/demo/';
     var redirectUrl = baseUrl + location.href.split('/').pop();
 
     debugMenu.innerHTML = [

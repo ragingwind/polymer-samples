@@ -14,7 +14,7 @@
     My name is <span>{{computeFullName(first, last)}}</span>
   </template>
   <script>
-    document.addeventlistener('webcomponentsready', function() {
+    document.addEventListener('WebComponentsReady', function() {
       polymer({
         is: 'x-custom',
 
@@ -23,7 +23,7 @@
           last: string,
         },
 
-        computefullname: function(first, last) {
+        computeFullName: function(first, last) {
           return first + ' ' + last;
         }
       });
